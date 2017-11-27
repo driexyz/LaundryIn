@@ -1,6 +1,7 @@
 package com.drpro.laundryin;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.drpro.laundryin.Common.Common;
 import com.drpro.laundryin.Model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,6 +56,10 @@ public class SignInActivity extends AppCompatActivity {
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 Toast.makeText(SignInActivity.this, "Sign In Successfully !", Toast.LENGTH_SHORT).show();
+                                Intent home = new Intent(SignInActivity.this, HomeActivity.class);
+                                Common.currentUser = user;
+                                startActivity(home);
+                                finish();
                             } else {
                                 Toast.makeText(SignInActivity.this, "Sign In Failed !!!", Toast.LENGTH_SHORT).show();
                             }

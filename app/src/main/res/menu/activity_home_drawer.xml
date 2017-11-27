@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="Manage Account">
+        <menu>
+            <item
+                android:id="@+id/Profile"
+                android:icon="@drawable/ic_person_black_24dp"
+                android:title="Profile" />
+            <item
+                android:id="@+id/Payment"
+                android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+                android:title="Payment" />
+            <item
+                android:id="@+id/Notification"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Setting Notification" />
+        </menu>
+    </item>
+
+    <item android:title="Customer Care">
+        <menu>
+            <item
+                android:id="@+id/Telephone"
+                android:icon="@drawable/ic_call_black_24dp"
+                android:title="via Telephone" />
+            <item
+                android:id="@+id/Email"
+                android:icon="@drawable/ic_email_black_24dp"
+                android:title="via Email" />
+            <item
+                android:id="@+id/Chat"
+                android:icon="@drawable/ic_access_time_black_24dp"
+                android:title="24 Hours Live Chat" />
+        </menu>
+    </item>
+
+    <item android:title="About">
+        <menu>
+            <item
+                android:id="@+id/Help"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="Help" />
+            <item
+                android:id="@+id/Promotion"
+                android:icon="@drawable/ic_insert_emoticon_black_24dp"
+                android:title="Promotion" />
+        </menu>
+    </item>
+
+</menu>
