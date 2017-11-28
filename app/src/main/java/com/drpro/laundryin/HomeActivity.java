@@ -13,11 +13,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView mTextMessage;
-    TextView txtFullname;
+    private TextView
+            mTextCurDate,
+            mTextETADate;
+
+
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -26,13 +34,13 @@ public class HomeActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText("Homeeeeeeeeeeeeeee");
-                    return true;
+                   // mTextMessage.setText("Homeeeeeeeeeeeeeee");
+                return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText("Historyyyyyyyyyyyyyy");
+                  //  mTextMessage.setText("Historyyyyyyyyyyyyyy");
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText("Profileeeeeeeeeeeeeeeeeeeeeee");
+                  //  mTextMessage.setText("Profileeeeeeeeeeeeeeeeeeeeeee");
                     return true;
             }
             return false;
@@ -58,7 +66,20 @@ public class HomeActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
 
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        //mTextMessage = (TextView) findViewById(R.id.message);
+
+        mTextCurDate = (TextView) findViewById(R.id.currentDate);
+        mTextETADate = (TextView) findViewById(R.id.etaDate);
+
+
+
+
+        mTextCurDate.setText(getCurrentDate());
+        mTextETADate.setText(getEstimateDate());
+
+
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -118,5 +139,28 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public String getCurrentDate()
+    {
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy");
+        String formattedDate = df.format(c.getTime());
+        // Now formattedDate have current date/time
+        return formattedDate;
+    }
+
+    public String getEstimateDate()
+    {
+        Calendar cNow = Calendar.getInstance();
+        Calendar cEta = Calendar.getInstance();
+        cEta.setTime(cNow.getTime());
+        cEta.add(Calendar.DATE, 2);
+
+        SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy");
+        String formattedDate = df.format(cEta.getTime());
+        // Now formattedDate have current date/time
+        return formattedDate;
     }
 }

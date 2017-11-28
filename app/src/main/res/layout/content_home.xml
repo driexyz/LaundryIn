@@ -1,80 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.drpro.laundryin.HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
-
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="73dp"
-        android:layout_height="33dp"
-        android:text="6 Jam"
-        tools:layout_editor_absoluteX="278dp"
-        tools:layout_editor_absoluteY="306dp" />
-
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="73dp"
-        android:layout_height="33dp"
-        android:text="3 Hari"
-        tools:layout_editor_absoluteX="278dp"
-        tools:layout_editor_absoluteY="370dp" />
-
-    <RadioButton
-        android:id="@+id/radioButton3"
-        android:layout_width="73dp"
-        android:layout_height="32dp"
-        android:text="1 Hari"
-        tools:layout_editor_absoluteX="278dp"
-        tools:layout_editor_absoluteY="338dp" />
-
-    <TextView
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/txtInfo1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Waktu Pengambilan"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="274dp" />
+        android:hint="Tambahan Informasi"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="201dp"
-        android:layout_height="44dp"
-        android:ems="10"
-        android:hint="curent date"
-        android:inputType="date"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="306dp" />
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp">
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="estimation date"
-        android:inputType="date"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="370dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
-    <SearchView
-        android:layout_width="377dp"
-        android:layout_height="66dp"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="194dp" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="382dp"
-        android:layout_height="148dp"
-        app:srcCompat="@color/fbutton_color_belize_hole"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        <TextView
+            android:id="@+id/txtInfo2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Waktu Pengambilan"
+            android:paddingBottom="10dp"/>
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@+id/currentDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:inputType="datetime"
+                    android:text="curent date"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/etaDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:inputType="datetime"
+                    android:text="estimated date"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6 Jam" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1 Hari" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3 Hari" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtInfo3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Informasi Harga Perkilo"
+            android:paddingBottom="5dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <TextView
+                    android:id="@+id/txtPaket1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Paket 3 hari"
+                    android:textSize="16sp"
+                    android:paddingBottom="2dp"/>
+                <TextView
+                    android:id="@+id/txtHarga1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="1kg @ Rp. 5000"
+                    android:textSize="12sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <TextView
+                    android:id="@+id/txtPaket2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Paket 1 hari"
+                    android:textSize="16sp"
+                    android:paddingBottom="2dp"/>
+                <TextView
+                    android:id="@+id/txtHarga2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="1kg @ Rp. 7000"
+                    android:textSize="12sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <TextView
+                    android:id="@+id/txtPaket3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Paket 1 Jam"
+                    android:textSize="16sp"
+                    android:paddingBottom="2dp"/>
+                <TextView
+                    android:id="@+id/txtHarga3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="1kg @ Rp. 10000"
+                    android:textSize="12sp"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
