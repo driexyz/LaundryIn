@@ -1,5 +1,6 @@
 package com.drpro.laundryin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -20,6 +23,7 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView
+            mTextLocation,
             mTextCurDate,
             mTextETADate;
 
@@ -67,9 +71,25 @@ public class HomeActivity extends AppCompatActivity
 
 
         //mTextMessage = (TextView) findViewById(R.id.message);
+        mTextLocation = (TextView)findViewById(R.id.txtLocation);
+        mTextLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openMaps = new Intent(HomeActivity.this,MapsActivity.class);
+                startActivity(openMaps);
+            }
+        });
 
         mTextCurDate = (TextView) findViewById(R.id.currentDate);
         mTextETADate = (TextView) findViewById(R.id.etaDate);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.day_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
 
 
 
