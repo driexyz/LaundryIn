@@ -1,5 +1,6 @@
 package com.drpro.laundryin;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,9 +28,7 @@ public class HomeActivity extends AppCompatActivity
             mTextCurDate,
             mTextETADate;
 
-
-
-
+    public static final int REQUEST_CODE = 1;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,7 +75,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent openMaps = new Intent(HomeActivity.this,MapsActivity.class);
-                startActivity(openMaps);
+                startActivityForResult(openMaps, REQUEST_CODE);
             }
         });
 
@@ -89,16 +88,8 @@ public class HomeActivity extends AppCompatActivity
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-
-
-
-
-
         mTextCurDate.setText(getCurrentDate());
         mTextETADate.setText(getEstimateDate());
-
-
-
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -182,5 +173,20 @@ public class HomeActivity extends AppCompatActivity
         String formattedDate = df.format(cEta.getTime());
         // Now formattedDate have current date/time
         return formattedDate;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_CODE) {
+
+            if (resultCode == Activity.RESULT_OK) {
+                mTextLocation.setText(data.getStringExtra("pos"));
+                // do something with the result
+
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                // some stuff that will happen if there's no result
+            }
+        }
     }
 }
