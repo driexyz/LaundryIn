@@ -1,11 +1,12 @@
 package com.drpro.laundryin;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,22 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private TextView
-            mTextLocation,
-            mTextCurDate,
-            mTextETADate;
-
-    public static final int REQUEST_CODE = 1;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,12 +26,24 @@ public class HomeActivity extends AppCompatActivity
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                    // mTextMessage.setText("Homeeeeeeeeeeeeeee");
+                    HomeFragment homeFrag = new HomeFragment();
+                   FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                   ft.replace(R.id.content, homeFrag, "FragmentName");
+                   ft.commit();
                 return true;
                 case R.id.navigation_dashboard:
                   //  mTextMessage.setText("Historyyyyyyyyyyyyyy");
+                    BlankFragment bleng = new BlankFragment();
+                    FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
+                   ft2.replace(R.id.content, bleng, "FragmentName");
+                   ft2.commit();
                     return true;
                 case R.id.navigation_notifications:
                   //  mTextMessage.setText("Profileeeeeeeeeeeeeeeeeeeeeee");
+                    ProfileFragment profile = new ProfileFragment();
+                    FragmentTransaction ft3 = getSupportFragmentManager().beginTransaction();
+                    ft3.replace(R.id.content, profile, "FragmentName");
+                    ft3.commit();
                     return true;
             }
             return false;
@@ -69,30 +69,9 @@ public class HomeActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
 
 
-        //mTextMessage = (TextView) findViewById(R.id.message);
-        mTextLocation = (TextView)findViewById(R.id.txtLocation);
-        mTextLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent openMaps = new Intent(HomeActivity.this,MapsActivity.class);
-                startActivityForResult(openMaps, REQUEST_CODE);
-            }
-        });
-
-        mTextCurDate = (TextView) findViewById(R.id.currentDate);
-        mTextETADate = (TextView) findViewById(R.id.etaDate);
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.day_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        mTextCurDate.setText(getCurrentDate());
-        mTextETADate.setText(getEstimateDate());
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
     }
 
     @Override
@@ -133,60 +112,35 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.Profile) {
+            ProfileFragment profile = new ProfileFragment();
+            FragmentTransaction ft3 = getSupportFragmentManager().beginTransaction();
+            ft3.replace(R.id.content, profile, "FragmentName");
+            ft3.commit();
+        } else if (id == R.id.Payment) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.Notification) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.Telephone) {
 
-        } else if (id == R.id.nav_share) {
+            Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=6285640054449&text=I'm%20interested%20in%20your%20car%20for%20sale");
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(sendIntent);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.Email) {
 
-        }*/
+        } else if (id == R.id.Chat) {
+
+        } else if (id == R.id.Help) {
+
+        } else if (id == R.id.Promotion) {
+
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public String getCurrentDate()
-    {
-        Calendar c = Calendar.getInstance();
 
-        SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy");
-        String formattedDate = df.format(c.getTime());
-        // Now formattedDate have current date/time
-        return formattedDate;
-    }
-
-    public String getEstimateDate()
-    {
-        Calendar cNow = Calendar.getInstance();
-        Calendar cEta = Calendar.getInstance();
-        cEta.setTime(cNow.getTime());
-        cEta.add(Calendar.DATE, 2);
-
-        SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy");
-        String formattedDate = df.format(cEta.getTime());
-        // Now formattedDate have current date/time
-        return formattedDate;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == REQUEST_CODE) {
-
-            if (resultCode == Activity.RESULT_OK) {
-                mTextLocation.setText(data.getStringExtra("pos"));
-                // do something with the result
-
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                // some stuff that will happen if there's no result
-            }
-        }
-    }
 }

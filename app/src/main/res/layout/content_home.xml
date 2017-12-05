@@ -9,7 +9,11 @@
     tools:context="com.drpro.laundryin.HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
-    <EditText
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+   <!--<EditText
         android:id="@+id/txtLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -246,6 +250,6 @@
 
     </LinearLayout>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </RelativeLayout>
