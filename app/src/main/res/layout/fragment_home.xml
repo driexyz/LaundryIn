@@ -5,18 +5,31 @@
     android:background="@android:color/white"
     tools:context="com.drpro.laundryin.HomeFragment">
 
-    <EditText
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ss.com.bannerslider.views.BannerSlider
+        android:id="@+id/banner_slider1"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
         android:id="@+id/txtLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="65dp"
         android:ems="10"
+        android:layout_weight="1"
         android:hint="Select Location"
         android:inputType="textPersonName"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textColor="@color/primary_text"
+        android:textSize="20sp"
+        android:ellipsize="none" />
 
     <EditText
         android:id="@+id/txtInfo1"
@@ -24,12 +37,16 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
         android:ems="10"
+        android:layout_weight="1"
         android:hint="Tambahan Informasi"
         android:inputType="textPersonName"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textColor="@color/primary_text"
+        android:textSize="20sp"
+        android:ellipsize="none"
+        android:scrollHorizontally="false"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_alignParentBottom="true"
@@ -51,7 +68,7 @@
                 android:id="@+id/txtInfo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
+                android:textColor="@color/primary_text"
                 android:textSize="20sp"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -77,7 +94,7 @@
                         android:ems="10"
                         android:inputType="datetime"
                         android:text="curent date"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/secondary_text"
                         android:textSize="16sp" />
 
                     <TextView
@@ -88,7 +105,7 @@
                         android:ems="10"
                         android:inputType="datetime"
                         android:text="estimated date"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/secondary_text"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -129,7 +146,8 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Informasi Harga Perkilo"
-                android:paddingBottom="5dp"/>
+                android:paddingBottom="5dp"
+                android:textColor="@color/primary_text"/>
 
             <LinearLayout
                 android:orientation="horizontal"
