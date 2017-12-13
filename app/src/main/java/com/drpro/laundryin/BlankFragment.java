@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.hold1.pagertabsindicator.PagerTabsIndicator;
 
@@ -19,11 +21,10 @@ import com.hold1.pagertabsindicator.PagerTabsIndicator;
  */
 public class BlankFragment extends Fragment {
 
-    private ViewPager viewPager;
-    private PagerTabsIndicator tabsIndicator;
     private PagerAdapter viewTextAdapter;
     private Fragment demoFragments;
 
+    TabHost tabHost;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -36,13 +37,30 @@ public class BlankFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_blank, container, false);
 
-        viewPager = view.findViewById(R.id.view_pager);
-        tabsIndicator = view.findViewById(R.id.tabs_indicator);
-
         viewTextAdapter = new TextAdapter(getActivity().getSupportFragmentManager());
 
-        viewPager.setAdapter(viewTextAdapter);
-        tabsIndicator.setViewPager(viewPager);
+        tabHost = (TabHost)view.findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        //Tab 1
+        TabHost.TabSpec spec = tabHost.newTabSpec("Tab Ongoing");
+        spec.setContent(R.id.ongoing);
+        spec.setIndicator("Tab Ongoing");
+        tabHost.addTab(spec);
+
+        //Tab2
+        spec = tabHost.newTabSpec("Tab Complete");
+        spec.setContent(R.id.complete);
+        spec.setIndicator("Tab Complete");
+        tabHost.addTab(spec);
+
+        //Event
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+
+            }
+        });
 
         return view;
     }
