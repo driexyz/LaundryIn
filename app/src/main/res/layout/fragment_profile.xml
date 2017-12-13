@@ -33,5 +33,11 @@
         android:layout_gravity="center"
         android:text="085691220706"/>
 
+    <ss.com.bannerslider.views.BannerSlider
+        android:id="@+id/banner_slider2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
 
 </LinearLayout>

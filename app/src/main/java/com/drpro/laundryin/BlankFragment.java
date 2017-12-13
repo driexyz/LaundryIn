@@ -43,15 +43,15 @@ public class BlankFragment extends Fragment {
         tabHost.setup();
 
         //Tab 1
-        TabHost.TabSpec spec = tabHost.newTabSpec("Tab Ongoing");
+        TabHost.TabSpec spec = tabHost.newTabSpec("In Progress");
         spec.setContent(R.id.ongoing);
-        spec.setIndicator("Tab Ongoing");
+        spec.setIndicator("In Progress");
         tabHost.addTab(spec);
 
         //Tab2
-        spec = tabHost.newTabSpec("Tab Complete");
+        spec = tabHost.newTabSpec("Completed");
         spec.setContent(R.id.complete);
-        spec.setIndicator("Tab Complete");
+        spec.setIndicator("Completed");
         tabHost.addTab(spec);
 
         //Event
