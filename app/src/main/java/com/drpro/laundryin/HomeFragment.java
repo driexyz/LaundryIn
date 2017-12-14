@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -44,6 +45,8 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             mTextETADate;
 
     private BannerSlider bannerSlider;
+
+    TabHost tabHost;
 
     public static final int REQUEST_CODE = 1;
 
@@ -99,6 +102,29 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
 
         bannerSlider = (BannerSlider) view.findViewById(R.id.banner_slider1);
         addBanners();
+
+        tabHost = (TabHost)view.findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        //Tab 1
+        TabHost.TabSpec spec = tabHost.newTabSpec("Standard");
+        spec.setContent(R.id.free);
+        spec.setIndicator("Standard");
+        tabHost.addTab(spec);
+
+        //Tab2
+        spec = tabHost.newTabSpec("Premium");
+        spec.setContent(R.id.premium);
+        spec.setIndicator("Premium");
+        tabHost.addTab(spec);
+
+        //Event
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+
+            }
+        });
 
         return view;
     }
