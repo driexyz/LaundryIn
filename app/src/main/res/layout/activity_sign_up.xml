@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_demo"
+    android:background="@drawable/suit"
     tools:context="com.drpro.laundryin.SignUpActivity">
 
 
@@ -66,14 +67,20 @@
 
 </LinearLayout>
 
-    <Button
+    <com.rilixtech.materialfancybutton.MaterialFancyButton
         android:id="@+id/btnSignUp"
-        android:text="Sign Up"
-        android:textColor="@android:color/holo_green_dark"
-        android:layout_weight="1"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        fancy:mfb_borderColor="#FFFFFF"
+        fancy:mfb_borderWidth="1dp"
+        fancy:mfb_defaultColor="#4caf50"
+        fancy:mfb_focusColor="#c8e6c9"
+        fancy:mfb_text="Create an account"
+        fancy:mfb_textColor="#FFFFFF"
+        fancy:mfb_radius="30dp"/>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.drpro.laundryin;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,9 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.hold1.pagertabsindicator.PagerTabsIndicator;
 
 
 /**
@@ -53,6 +53,13 @@ public class BlankFragment extends Fragment {
         spec.setContent(R.id.complete);
         spec.setIndicator("Completed");
         tabHost.addTab(spec);
+
+        int titleColor = Color.WHITE; //<-- change this to the color you want the title text to be
+        for(int i = 0;i < tabHost.getTabWidget().getChildCount(); i++)
+        {
+            TextView textView = (TextView)tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            textView.setTextColor(titleColor);
+        }
 
         //Event
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {

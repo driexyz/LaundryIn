@@ -1,5 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -268,15 +269,26 @@
 
                                 </LinearLayout>
 
-                                <Button
-                                    android:id="@+id/btnOrder"
-                                    android:text="Pesan Sekarang"
+
+
+                                <com.rilixtech.materialfancybutton.MaterialFancyButton
+                                    android:id="@+id/btn_spotify"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="50dp"
-                                    android:layout_marginRight="50dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginTop="8dp"/>
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingTop="10dp"
+                                    fancy:mfb_borderColor="#FFFFFF"
+                                    fancy:mfb_borderWidth="1dp"
+                                    fancy:mfb_defaultColor="#7ab800"
+                                    fancy:mfb_focusColor="#9bd823"
+                                    fancy:mfb_iconFont="fontawesome.ttf"
+                                    fancy:mfb_radius="30dp"
+                                    fancy:mfb_text="Pesan Sekarang"
+                                    fancy:mfb_textColor="#FFFFFF" />
+
 
 
 
@@ -299,6 +311,7 @@
 
                             <LinearLayout
                                 android:orientation="vertical"
+                                android:weightSum="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
@@ -342,32 +355,6 @@
 
                                 </android.support.v7.widget.CardView>
 
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="8dp">>
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Pesanan 4"
-                                        android:layout_margin="26dp"/>
-
-                                </android.support.v7.widget.CardView>
-
-                                <android.support.v7.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="8dp">>
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Pesanan 5"
-                                        android:layout_margin="26dp"/>
-
-                                </android.support.v7.widget.CardView>
-
                             </LinearLayout>
 
                         </ScrollView>
@@ -377,7 +364,4 @@
             </LinearLayout>
         </TabHost>
     </LinearLayout>
-
-
-
-</RelativeLayout>
+</LinearLayout>

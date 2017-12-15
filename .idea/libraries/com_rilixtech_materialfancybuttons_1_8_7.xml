@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.rilixtech:materialfancybuttons-1.8.7">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialfancybuttons-1.8.7.aar/947c850ef7e60392c302e5118a1a4bd6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialfancybuttons-1.8.7.aar/947c850ef7e60392c302e5118a1a4bd6/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.rilixtech/materialfancybuttons/1.8.7/3a7ea5fdb519442d53b7af5779784ef09000bb1f/materialfancybuttons-1.8.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

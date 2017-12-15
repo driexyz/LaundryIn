@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_demo"
+    android:background="@drawable/suit"
     tools:context="com.drpro.laundryin.SignInActivity">
 
 
@@ -50,14 +51,26 @@
 
     </LinearLayout>
 
-    <Button
+    <com.rilixtech.materialfancybutton.MaterialFancyButton
         android:id="@+id/btnSignIn"
-        android:text="Sign In"
-        android:textColor="@android:color/holo_blue_dark"
-        android:layout_weight="1"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp" />
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:layout_alignParentBottom="true"
+        fancy:mfb_borderColor="#FFFFFF"
+        fancy:mfb_borderWidth="1dp"
+        fancy:mfb_defaultColor="#2196f3"
+        fancy:mfb_focusColor="#bbdefb"
+        fancy:mfb_icon="@string/fawi_user"
+        fancy:mfb_iconPosition="left"
+        fancy:mfb_text="Login"
+        fancy:mfb_textColor="#FFFFFF"
+        fancy:mfb_radius="30dp"
+        />
 
 </RelativeLayout>

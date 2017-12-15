@@ -17,11 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.rilixtech.materialfancybutton.MaterialFancyButton;
 
 public class SignInActivity extends AppCompatActivity {
 
     EditText edtPhone, edtPassword;
-    Button btnSignIn;
+    MaterialFancyButton btnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

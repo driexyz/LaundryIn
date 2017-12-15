@@ -2,6 +2,7 @@ package com.drpro.laundryin;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -117,6 +118,13 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         spec.setContent(R.id.premium);
         spec.setIndicator("Premium");
         tabHost.addTab(spec);
+
+        int titleColor = Color.WHITE; //<-- change this to the color you want the title text to be
+        for(int i = 0;i < tabHost.getTabWidget().getChildCount(); i++)
+        {
+            TextView textView = (TextView)tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            textView.setTextColor(titleColor);
+        }
 
         //Event
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {

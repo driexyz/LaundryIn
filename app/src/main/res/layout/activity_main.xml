@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_demo"
+    android:background="@drawable/suit"
     tools:context="com.drpro.laundryin.MainActivity">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+       <!-- <Button
             android:id="@+id/btnSignUp"
             android:text="Sign Up"
             android:textColor="@android:color/holo_green_dark"
@@ -52,7 +52,43 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp" /> -->
+
+        <com.rilixtech.materialfancybutton.MaterialFancyButton
+            android:id="@+id/btnSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            fancy:mfb_borderColor="#FFFFFF"
+            fancy:mfb_borderWidth="1dp"
+            fancy:mfb_defaultColor="#4caf50"
+            fancy:mfb_focusColor="#c8e6c9"
+            fancy:mfb_text="Create an account"
+            fancy:mfb_textColor="#FFFFFF"
+            fancy:mfb_radius="30dp"/>
+
+        <com.rilixtech.materialfancybutton.MaterialFancyButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            fancy:mfb_borderColor="#FFFFFF"
+            fancy:mfb_borderWidth="1dp"
+            fancy:mfb_defaultColor="#2196f3"
+            fancy:mfb_focusColor="#bbdefb"
+            fancy:mfb_icon="@string/fawi_user"
+            fancy:mfb_iconPosition="left"
+            fancy:mfb_text="Login"
+            fancy:mfb_textColor="#FFFFFF"
+            fancy:mfb_radius="30dp"
+            />
 
 
     </LinearLayout>
