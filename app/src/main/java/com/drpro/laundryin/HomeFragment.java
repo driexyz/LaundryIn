@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.drpro.laundryin.Common.Common;
 import com.drpro.laundryin.Model.Order;
@@ -187,15 +188,15 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
 
         Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium);
 
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
         String key = mDatabase.child("orders").push().getKey();
         Map<String, Object> postValues = orders.toMap();
-
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/orders/" , postValues);
-
+        childUpdates.put("/orders/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
+
+        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+        mTextLocation.setText("");
+        mTextNotes.setText("");
 
     }
 
@@ -294,12 +295,12 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
                 stBuilder.append("Name: ");
                 stBuilder.append(placename);
                 stBuilder.append("\n");
-                stBuilder.append("Latitude: ");
+                /*stBuilder.append("Latitude: ");
                 stBuilder.append(latitude);
                 stBuilder.append("\n");
                 stBuilder.append("Logitude: ");
                 stBuilder.append(longitude);
-                stBuilder.append("\n");
+                stBuilder.append("\n");*/
                 stBuilder.append("Address: ");
                 stBuilder.append(address);
                 mTextLocation.setText(stBuilder.toString());

@@ -251,7 +251,7 @@
                                             android:layout_height="wrap_content"
                                             android:ems="10"
                                             android:inputType="textPersonName"
-                                            android:text="Paket 1 Jam"
+                                            android:text="Paket 6 Jam"
                                             android:textSize="16sp"
                                             android:paddingBottom="2dp"/>
                                         <TextView
