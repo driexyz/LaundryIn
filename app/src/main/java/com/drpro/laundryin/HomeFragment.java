@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.drpro.laundryin.Common.Common;
+import com.drpro.laundryin.Model.Order;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -21,11 +24,16 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.rilixtech.materialfancybutton.MaterialFancyButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.RemoteBanner;
@@ -42,6 +50,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
 
     private TextView
             mTextLocation,
+            mTextNotes,
             mTextCurDate,
             mTextETADate;
 
@@ -53,6 +62,11 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
 
     private GoogleApiClient mGoogleApiClient;
     private int PLACE_PICKER_REQUEST = 1;
+
+    // [START declare_database_ref]
+    private DatabaseReference mDatabase;
+    // [END declare_database_ref]
+    MaterialFancyButton btnOrder;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -82,6 +96,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             }
         });
 
+        mTextNotes = (TextView) view.findViewById(R.id.txtInfo1);
         mTextCurDate = (TextView) view.findViewById(R.id.currentDate);
         mTextETADate = (TextView) view.findViewById(R.id.etaDate);
 
@@ -134,7 +149,54 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             }
         });
 
+        // [START initialize_database_ref]
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        // [END initialize_database_ref]
+
+        btnOrder = view.findViewById(R.id.btn_order);
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitOrder();
+            }
+        });
+
         return view;
+    }
+
+    private void submitOrder() {
+        final String user = Common.currentUser.getName();
+        final String location = mTextLocation.getText().toString();
+        final String notes = mTextNotes.getText().toString();
+        final String curdate = mTextCurDate.getText().toString();
+        final String etadate = mTextETADate.getText().toString();
+        final String ordertype = "Paket Hemat";
+        final Boolean isPremium = false;
+
+        // location is required
+        if (TextUtils.isEmpty(location)) {
+            mTextLocation.setError("REQUIRED");
+            return;
+        }
+
+        // notes is required
+        if (TextUtils.isEmpty(notes)) {
+            mTextNotes.setError("REQUIRED");
+            return;
+        }
+
+        Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium);
+
+        // Create new post at /user-posts/$userid/$postid and at
+        // /posts/$postid simultaneously
+        String key = mDatabase.child("orders").push().getKey();
+        Map<String, Object> postValues = orders.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/orders/" , postValues);
+
+        mDatabase.updateChildren(childUpdates);
+
     }
 
     public String getCurrentDate()
