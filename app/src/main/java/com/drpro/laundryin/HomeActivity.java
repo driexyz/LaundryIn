@@ -14,9 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.drpro.laundryin.Common.Common;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView mTxtFullname;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,11 +72,14 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
+        mTxtFullname = headerView.findViewById(R.id.txtFullName);
+        mTxtFullname.setText(Common.currentUser.getName().toString());
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
+
     }
 
     @Override
@@ -123,7 +131,7 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.Telephone) {
 
-            Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=6285640054449&text=I'm%20interested%20in%20your%20car%20for%20sale");
+            Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=6285691220706&text=Hallo%20LaundryIN%20");
             Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(sendIntent);
 

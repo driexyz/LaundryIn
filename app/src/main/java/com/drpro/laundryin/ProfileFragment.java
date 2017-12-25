@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.drpro.laundryin.Common.Common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,7 @@ import ss.com.bannerslider.views.BannerSlider;
 public class ProfileFragment extends Fragment {
 
     private BannerSlider bannerSlider;
+    private TextView mTextFullname;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -32,6 +36,9 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        mTextFullname = view.findViewById(R.id.profileFullname);
+        mTextFullname.setText(Common.currentUser.getName().toString());
 
         bannerSlider = (BannerSlider) view.findViewById(R.id.banner_slider2);
         addBanners();
