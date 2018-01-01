@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -50,10 +51,11 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
 
 
     private TextView
-            mTextLocation,
             mTextNotes,
             mTextCurDate,
             mTextETADate;
+
+    private EditText mTextLocation;
 
     private BannerSlider bannerSlider;
 
@@ -81,7 +83,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //mTextMessage = (TextView) findViewById(R.id.message);
-        mTextLocation = (TextView)view.findViewById(R.id.txtLocation);
+        mTextLocation = (EditText)view.findViewById(R.id.txtLocation);
         mTextLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,6 +194,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         Map<String, Object> postValues = orders.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/orders/" + key, postValues);
+        childUpdates.put("/user-orders/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
 
         Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();

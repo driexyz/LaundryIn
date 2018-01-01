@@ -48,5 +48,7 @@ dependencies {
     implementation 'com.rilixtech:materialfancybuttons:1.8.7'
     implementation 'com.rilixtech:fontawesome-typeface:4.7.0.4'
 
+    implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
+
 }
 apply plugin: 'com.google.gms.google-services'

@@ -49,65 +49,55 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/txtLocation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/linearLayout"
-                            android:layout_centerHorizontal="true"
-                            android:ems="10"
-                            android:layout_weight="1"
-                            android:hint="Select Location"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/primary_text"
-                            android:textSize="20sp"
-                            android:ellipsize="none" />
-
-                        <EditText
-                            android:id="@+id/txtInfo1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/linearLayout"
-                            android:layout_centerHorizontal="true"
-                            android:ems="10"
-                            android:layout_weight="1"
-                            android:hint="Tambahan Informasi"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/primary_text"
-                            android:textSize="20sp"
-                            android:ellipsize="none"
-                            android:scrollHorizontally="false"/>
-
-
-                        <LinearLayout
-                            android:layout_alignParentBottom="true"
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="65dp"
-                            android:id="@+id/linearLayout">
+                        <ScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
                             <LinearLayout
                                 android:orientation="vertical"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginRight="8dp">
-
-                                <TextView
-                                    android:id="@+id/txtInfo2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/primary_text"
-                                    android:textSize="20sp"
-                                    android:ems="10"
-                                    android:inputType="textPersonName"
-                                    android:text="Waktu Pengambilan"
-                                    android:paddingBottom="10dp"/>
-
+                                android:layout_height="match_parent">
                                 <LinearLayout
-                                    android:orientation="horizontal"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <EditText
+                                        android:id="@+id/txtLocation"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_weight="1"
+                                        android:ellipsize="end"
+                                        android:ems="10"
+                                        android:hint="Tap disini untuk menambahkan lokasi anda"
+                                        android:inputType="textMultiLine"
+                                        android:maxLines="3"
+                                        android:scrollHorizontally="false"
+                                        android:textColor="@color/primary_text"
+                                        android:textSize="16sp"
+                                        android:layout_marginBottom="-20dp"
+                                        android:layout_marginTop="-10dp"/>
+
+                                    <EditText
+                                        android:id="@+id/txtInfo1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_weight="1"
+                                        android:ellipsize="end"
+                                        android:ems="10"
+                                        android:hint="Tambahan Informasi"
+                                        android:inputType="textMultiLine"
+                                        android:maxLines="3"
+                                        android:scrollHorizontally="false"
+                                        android:textColor="@color/primary_text"
+                                        android:textSize="16sp"
+                                       />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:orientation="vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
@@ -115,186 +105,210 @@
                                         android:orientation="vertical"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="2">
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_marginRight="8dp">
 
                                         <TextView
-                                            android:id="@+id/currentDate"
+                                            android:id="@+id/txtInfo2"
                                             android:layout_width="match_parent"
-                                            android:layout_height="46dp"
-                                            android:layout_weight="2"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="@color/primary_text"
                                             android:ems="10"
-                                            android:inputType="datetime"
-                                            android:text="curent date"
-                                            android:textColor="@color/secondary_text"
-                                            android:textSize="16sp" />
+                                            android:inputType="textPersonName"
+                                            android:text="Waktu Pengambilan"
+                                            android:paddingBottom="10dp"/>
 
-                                        <TextView
-                                            android:id="@+id/etaDate"
+                                        <LinearLayout
+                                            android:orientation="horizontal"
                                             android:layout_width="match_parent"
-                                            android:layout_height="46dp"
-                                            android:layout_weight="2"
-                                            android:ems="10"
-                                            android:inputType="datetime"
-                                            android:text="estimated date"
-                                            android:textColor="@color/secondary_text"
-                                            android:textSize="16sp" />
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:orientation="vertical"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="2">
+
+                                                <TextView
+                                                    android:id="@+id/currentDate"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="46dp"
+                                                    android:layout_weight="2"
+                                                    android:ems="10"
+                                                    android:inputType="datetime"
+                                                    android:text="curent date"
+                                                    android:textColor="@color/secondary_text"
+                                                    android:textSize="16sp" />
+
+                                                <TextView
+                                                    android:id="@+id/etaDate"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="46dp"
+                                                    android:layout_weight="2"
+                                                    android:ems="10"
+                                                    android:inputType="datetime"
+                                                    android:text="estimated date"
+                                                    android:textColor="@color/secondary_text"
+                                                    android:textSize="16sp" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:orientation="vertical"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="2">
+
+                                                <Spinner
+                                                    android:id="@+id/spinner"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:gravity="center"
+                                                    android:textAlignment="center"
+                                                    android:layout_gravity="center"/>
+
+                                            </LinearLayout>
+
+                                        </LinearLayout>
+
 
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:orientation="vertical"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="2">
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_marginRight="8dp"
+                                        android:orientation="vertical">
 
-                                        <Spinner
-                                            android:id="@+id/spinner"
+                                        <TextView
+                                            android:id="@+id/txtInfo3"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:textAlignment="center"
-                                            android:layout_gravity="center"/>
+                                            android:ems="10"
+                                            android:inputType="textPersonName"
+                                            android:text="Informasi Harga Perkilo"
+                                            android:paddingBottom="5dp"
+                                            android:textColor="@color/primary_text"/>
+
+                                        <LinearLayout
+                                            android:orientation="horizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:orientation="vertical"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:id="@+id/txtPaket1"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ems="10"
+                                                    android:inputType="textPersonName"
+                                                    android:text="Paket 3 hari"
+                                                    android:textSize="16sp"
+                                                    android:paddingBottom="2dp"/>
+                                                <TextView
+                                                    android:id="@+id/txtHarga1"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ems="10"
+                                                    android:inputType="textPersonName"
+                                                    android:text="1kg @ Rp. 5000"
+                                                    android:textSize="12sp"/>
+
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:orientation="vertical"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:id="@+id/txtPaket2"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ems="10"
+                                                    android:inputType="textPersonName"
+                                                    android:text="Paket 1 hari"
+                                                    android:textSize="16sp"
+                                                    android:paddingBottom="2dp"/>
+                                                <TextView
+                                                    android:id="@+id/txtHarga2"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ems="10"
+                                                    android:inputType="textPersonName"
+                                                    android:text="1kg @ Rp. 7000"
+                                                    android:textSize="12sp"/>
+
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:orientation="vertical"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:id="@+id/txtPaket3"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ems="10"
+                                                    android:inputType="textPersonName"
+                                                    android:text="Paket 6 Jam"
+                                                    android:textSize="16sp"
+                                                    android:paddingBottom="2dp"/>
+                                                <TextView
+                                                    android:id="@+id/txtHarga3"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:ems="10"
+                                                    android:inputType="textPersonName"
+                                                    android:text="1kg @ Rp. 10000"
+                                                    android:textSize="12sp"/>
+
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+
+
+                                        <com.rilixtech.materialfancybutton.MaterialFancyButton
+                                            android:id="@+id/btn_order"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="10dp"
+                                            android:paddingBottom="10dp"
+                                            android:paddingLeft="20dp"
+                                            android:paddingRight="20dp"
+                                            android:paddingTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            fancy:mfb_borderColor="#FFFFFF"
+                                            fancy:mfb_borderWidth="1dp"
+                                            fancy:mfb_defaultColor="#7ab800"
+                                            fancy:mfb_focusColor="#9bd823"
+                                            fancy:mfb_iconFont="fontawesome.ttf"
+                                            fancy:mfb_radius="30dp"
+                                            fancy:mfb_text="Pesan Sekarang"
+                                            fancy:mfb_textColor="#FFFFFF" />
 
                                     </LinearLayout>
 
                                 </LinearLayout>
-
-
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginRight="8dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txtInfo3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:ems="10"
-                                    android:inputType="textPersonName"
-                                    android:text="Informasi Harga Perkilo"
-                                    android:paddingBottom="5dp"
-                                    android:textColor="@color/primary_text"/>
-
-                                <LinearLayout
-                                    android:orientation="horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <LinearLayout
-                                        android:orientation="vertical"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="3">
-
-                                        <TextView
-                                            android:id="@+id/txtPaket1"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:ems="10"
-                                            android:inputType="textPersonName"
-                                            android:text="Paket 3 hari"
-                                            android:textSize="16sp"
-                                            android:paddingBottom="2dp"/>
-                                        <TextView
-                                            android:id="@+id/txtHarga1"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:ems="10"
-                                            android:inputType="textPersonName"
-                                            android:text="1kg @ Rp. 5000"
-                                            android:textSize="12sp"/>
-
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:orientation="vertical"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="3">
-
-                                        <TextView
-                                            android:id="@+id/txtPaket2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:ems="10"
-                                            android:inputType="textPersonName"
-                                            android:text="Paket 1 hari"
-                                            android:textSize="16sp"
-                                            android:paddingBottom="2dp"/>
-                                        <TextView
-                                            android:id="@+id/txtHarga2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:ems="10"
-                                            android:inputType="textPersonName"
-                                            android:text="1kg @ Rp. 7000"
-                                            android:textSize="12sp"/>
-
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:orientation="vertical"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="3">
-
-                                        <TextView
-                                            android:id="@+id/txtPaket3"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:ems="10"
-                                            android:inputType="textPersonName"
-                                            android:text="Paket 6 Jam"
-                                            android:textSize="16sp"
-                                            android:paddingBottom="2dp"/>
-                                        <TextView
-                                            android:id="@+id/txtHarga3"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:ems="10"
-                                            android:inputType="textPersonName"
-                                            android:text="1kg @ Rp. 10000"
-                                            android:textSize="12sp"/>
-
-
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-
-
-                                <com.rilixtech.materialfancybutton.MaterialFancyButton
-                                    android:id="@+id/btn_order"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingLeft="20dp"
-                                    android:paddingRight="20dp"
-                                    android:paddingTop="10dp"
-                                    fancy:mfb_borderColor="#FFFFFF"
-                                    fancy:mfb_borderWidth="1dp"
-                                    fancy:mfb_defaultColor="#7ab800"
-                                    fancy:mfb_focusColor="#9bd823"
-                                    fancy:mfb_iconFont="fontawesome.ttf"
-                                    fancy:mfb_radius="30dp"
-                                    fancy:mfb_text="Pesan Sekarang"
-                                    fancy:mfb_textColor="#FFFFFF" />
-
-
-
-
-                            </LinearLayout>
-
-                        </LinearLayout>
+                        </ScrollView>
 
                     </LinearLayout>
 
