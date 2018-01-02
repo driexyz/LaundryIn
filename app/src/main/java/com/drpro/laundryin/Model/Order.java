@@ -29,6 +29,10 @@ public class Order {
         this.isPremium = isPremium;
     }
 
+    public Order(String user) {
+        this.user = user;
+    }
+
     // [START post_to_map]
     @Exclude
     public Map<String, Object> toMap() {
