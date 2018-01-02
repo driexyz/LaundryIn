@@ -3,12 +3,10 @@ package com.drpro.laundryin;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,16 +16,13 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.drpro.laundryin.Adapter.OrderAdapter;
 import com.drpro.laundryin.Common.Common;
-import com.drpro.laundryin.Interface.ILoadMore;
+import com.drpro.laundryin.Interface.OrderClickListener;
 import com.drpro.laundryin.Model.Order;
+import com.drpro.laundryin.ViewHolder.OrderViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 
 /**
@@ -40,12 +35,13 @@ public class BlankFragment extends Fragment {
 
     TabHost tabHost;
 
-    List<Order> orders = new ArrayList<>();
-    OrderAdapter adapter;
-
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
+
+    private FirebaseRecyclerAdapter<Order, OrderViewHolder> mAdapter;
+    private RecyclerView mRecycler;
+    private LinearLayoutManager mManager;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -90,60 +86,43 @@ public class BlankFragment extends Fragment {
             }
         });
 
-        //set dynamic data
+        // [START create_database_reference]
+        mDatabase = FirebaseDatabase.getInstance().getReference("/Users/" + Common.currentUser.getPhone().toString() + "/Orders/");
+        // [END create_database_reference]
+
+        mRecycler = view.findViewById(R.id.ongoing);
+        mRecycler.setHasFixedSize(true);
+        mManager = new LinearLayoutManager(getActivity());
+        mRecycler.setLayoutManager(mManager);
+
+        //load data
         getdatafromfirebase();
-
-        //init view
-        RecyclerView recyclerView = view.findViewById(R.id.ongoing);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new OrderAdapter(recyclerView,getActivity(),orders);
-        recyclerView.setAdapter(adapter);
-
-        //setLoadMore
-
-        adapter.setLoadMore(new ILoadMore() {
-            @Override
-            public void onLoadMore() {
-                if(orders.size() <= 50)
-                {
-                    orders.add(null);
-                    adapter.notifyItemInserted(orders.size()-1);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            orders.remove(orders.size()-1);
-                            adapter.notifyItemRemoved(orders.size());
-
-                            int index = orders.size();
-                            int end = index+10;
-
-                            for(int i=index;i<end;i++)
-                            {
-                                Order item = new Order(Common.currentUser.getName().toString() + i);
-                                orders.add(item);
-                            }
-
-                            adapter.notifyDataSetChanged();
-                            adapter.setLoaded();
-                        }
-                    },2000);
-                }else{
-                    Toast.makeText(getActivity(),"load berhasil", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         return view;
     }
 
     private void getdatafromfirebase() {
 
-        for(int i=0;i<10;i++)
-        {
-            Order item = new Order(Common.currentUser.getName().toString() + i);
-            orders.add(item);
-        }
+        mAdapter = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(Order.class,R.layout.item_order_layout,OrderViewHolder.class,mDatabase){
+            @Override
+            protected void populateViewHolder(OrderViewHolder viewHolder, Order model, int position) {
+                viewHolder.orderNumberView.setText("No. Order : #" + String.valueOf(position + 1));
+                viewHolder.userView.setText("Nama: " + model.getUser());
+                viewHolder.locationView.setText("Lokasi: " + model.getLocation());
+                viewHolder.orderNotesView.setText("Catatan: " + model.getOrderNotes());
+                viewHolder.orderDateView.setText("Tgl Order: " + model.getOrderDate());
+                viewHolder.etaDateView.setText("Tgl. Ambil: " + model.getEtaDate());
+                viewHolder.orderTypeView.setText("Tipe: " + model.getOrderType());
+
+                viewHolder.setOrderClickListener(new OrderClickListener() {
+                    @Override
+                    public void onClick(View view, int pos, boolean isLongClick) {
+                        Toast.makeText(getActivity(), "order clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        };
+        mRecycler.setAdapter(mAdapter);
 
     }
 

@@ -190,11 +190,11 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
 
         Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium);
 
-        String key = mDatabase.child("orders").push().getKey();
+        String key = mDatabase.child("Orders").push().getKey();
         Map<String, Object> postValues = orders.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/orders/" + key, postValues);
-        childUpdates.put("/user-orders/" + key, postValues);
+        childUpdates.put( "/Users/" + Common.currentUser.getPhone().toString() + "/Orders/" + key, postValues);
+        childUpdates.put("/Users-order/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
 
         Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
@@ -295,7 +295,6 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
                 String latitude = String.valueOf(place.getLatLng().latitude);
                 String longitude = String.valueOf(place.getLatLng().longitude);
                 String address = String.format("%s", place.getAddress());
-                stBuilder.append("Name: ");
                 stBuilder.append(placename);
                 stBuilder.append("\n");
                 /*stBuilder.append("Latitude: ");

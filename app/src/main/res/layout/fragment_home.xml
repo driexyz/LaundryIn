@@ -56,11 +56,15 @@
                             <LinearLayout
                                 android:orientation="vertical"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
                                 <LinearLayout
                                     android:orientation="vertical"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true">
 
                                     <EditText
                                         android:id="@+id/txtLocation"
@@ -107,7 +111,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_centerInParent="true"
                                         android:layout_marginLeft="8dp"
-                                        android:layout_marginRight="8dp">
+                                        android:layout_marginRight="8dp"
+                                        android:focusable="true"
+                                        android:focusableInTouchMode="true">
 
                                         <TextView
                                             android:id="@+id/txtInfo2"

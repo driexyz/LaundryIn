@@ -36,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         //Init Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
+        final DatabaseReference table_user = database.getReference("Users");
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
                         else
                         {
                             mDialog.dismiss();
-                            User user = new User(edtName.getText().toString(), edtPassword.getText().toString());
+                            User user = new User(edtName.getText().toString(), edtPassword.getText().toString(),edtPhone.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(SignUpActivity.this, "Sign Up Success, User Added !", Toast.LENGTH_SHORT).show();
                             Intent home = new Intent(SignUpActivity.this, HomeActivity.class);

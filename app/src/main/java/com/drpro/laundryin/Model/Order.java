@@ -33,6 +33,9 @@ public class Order {
         this.user = user;
     }
 
+    public Order() {
+    }
+
     // [START post_to_map]
     @Exclude
     public Map<String, Object> toMap() {
