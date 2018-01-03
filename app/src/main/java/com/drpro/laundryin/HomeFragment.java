@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +28,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rilixtech.materialfancybutton.MaterialFancyButton;
 
 import java.text.SimpleDateFormat;
@@ -161,10 +166,19 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             @Override
             public void onClick(View v) {
                 submitOrder();
+                goToHistoryOrder();
             }
+
         });
 
         return view;
+    }
+
+    private void goToHistoryOrder() {
+        BlankFragment bleng = new BlankFragment();
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content, bleng, "FragmentName");
+        ft.commit();
     }
 
     private void submitOrder() {
@@ -182,25 +196,41 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             return;
         }
 
-        // notes is required
+        /*// notes is required
         if (TextUtils.isEmpty(notes)) {
             mTextNotes.setError("REQUIRED");
             return;
-        }
+        }*/
 
-        Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium);
+        final Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium);
 
+        mDatabase.child("Users").child(Common.currentUser.getPhone().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                writeToDatabase(orders);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+        //mTextLocation.setText("");
+        //mTextNotes.setText("");
+
+    }
+
+    private void writeToDatabase(Order orders) {
         String key = mDatabase.child("Orders").push().getKey();
         Map<String, Object> postValues = orders.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put( "/Users/" + Common.currentUser.getPhone().toString() + "/Orders/" + key, postValues);
         childUpdates.put("/Users-order/" + key, postValues);
         mDatabase.updateChildren(childUpdates);
-
-        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
-        mTextLocation.setText("");
-        mTextNotes.setText("");
-
     }
 
     public String getCurrentDate()
@@ -244,22 +274,6 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         bannerSlider.setBanners(remoteBanners);
 
     }
-
-
-    /*@Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == REQUEST_CODE) {
-
-            if (resultCode == RESULT_OK) {
-                mTextLocation.setText(data.getStringExtra("pos"));
-                // do something with the result
-
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                // some stuff that will happen if there's no result
-            }
-        }
-    }*/
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

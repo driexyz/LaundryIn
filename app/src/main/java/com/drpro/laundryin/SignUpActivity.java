@@ -2,6 +2,7 @@ package com.drpro.laundryin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText edtPhone, edtName, edtPassword;
     MaterialFancyButton btnSignUp;
+
+    private SharedPreferences sPref;
+    private static final String KEY_NAME = "Name";
+    private static final String KEY_PASS = "Pass";
+    private static final String KEY_PHONE = "Phone";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
                         {
                             mDialog.dismiss();
                             User user = new User(edtName.getText().toString(), edtPassword.getText().toString(),edtPhone.getText().toString());
+                            saveToSharedPreferences(user);
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(SignUpActivity.this, "Sign Up Success, User Added !", Toast.LENGTH_SHORT).show();
                             Intent home = new Intent(SignUpActivity.this, HomeActivity.class);
@@ -76,5 +83,16 @@ public class SignUpActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void saveToSharedPreferences(User user) {
+
+        sPref = getSharedPreferences("userPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPref.edit();
+        editor.putString(KEY_NAME, user.getName());
+        editor.putString(KEY_PASS, user.getName());
+        editor.putString(KEY_PHONE, user.getName());
+        editor.commit();
+
     }
 }

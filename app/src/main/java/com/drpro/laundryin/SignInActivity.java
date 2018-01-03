@@ -45,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
                 mDialog.setMessage("Please Wait ...");
                 mDialog.show();
 
-                table_user.addValueEventListener(new ValueEventListener() {
+                table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -56,7 +56,7 @@ public class SignInActivity extends AppCompatActivity {
                             mDialog.dismiss();
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
-                                Toast.makeText(SignInActivity.this, "Sign In Successfully !", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(SignInActivity.this, "Sign In Successfully !", Toast.LENGTH_SHORT).show();
                                 Intent home = new Intent(SignInActivity.this, HomeActivity.class);
                                 Common.currentUser = user;
                                 startActivity(home);

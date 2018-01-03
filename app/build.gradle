@@ -44,11 +44,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
 
-    implementation 'com.ss.bannerslider:bannerslider:1.8.0'
+    //implementation 'com.ss.bannerslider:bannerslider:1.8.0'
     implementation 'com.rilixtech:materialfancybuttons:1.8.7'
     implementation 'com.rilixtech:fontawesome-typeface:4.7.0.4'
 
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
 
+    compile project(path: ':bannerslider')
 }
 apply plugin: 'com.google.gms.google-services'

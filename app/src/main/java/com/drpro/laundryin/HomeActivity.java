@@ -14,7 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.drpro.laundryin.Common.Common;
 
@@ -22,6 +24,9 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView mTxtFullname;
+    private static long back_pressed;
+    private int mTabPosition = 0;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,6 +36,7 @@ public class HomeActivity extends AppCompatActivity
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                    // mTextMessage.setText("Homeeeeeeeeeeeeeee");
+                    mTabPosition = 0;
                     HomeFragment homeFrag = new HomeFragment();
                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                    ft.replace(R.id.content, homeFrag, "FragmentName");
@@ -38,17 +44,25 @@ public class HomeActivity extends AppCompatActivity
                 return true;
                 case R.id.navigation_dashboard:
                   //  mTextMessage.setText("Historyyyyyyyyyyyyyy");
+                    if(mTabPosition ==1)
+                        return false;
+                    else{
+                    mTabPosition = 1;
                     BlankFragment bleng = new BlankFragment();
                     FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
                    ft2.replace(R.id.content, bleng, "FragmentName");
-                   ft2.commit();
+                   ft2.commit();}
                     return true;
                 case R.id.navigation_notifications:
                   //  mTextMessage.setText("Profileeeeeeeeeeeeeeeeeeeeeee");
+                    if(mTabPosition ==2)
+                        return false;
+                    else{
+                    mTabPosition = 2;
                     ProfileFragment profile = new ProfileFragment();
                     FragmentTransaction ft3 = getSupportFragmentManager().beginTransaction();
                     ft3.replace(R.id.content, profile, "FragmentName");
-                    ft3.commit();
+                    ft3.commit();}
                     return true;
             }
             return false;
@@ -80,6 +94,7 @@ public class HomeActivity extends AppCompatActivity
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_home);
 
+
     }
 
     @Override
@@ -87,9 +102,14 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
+
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            this.moveTaskToBack(true);
+        }
+        else
+            Toast.makeText(this, "Press once again to exit!", Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
     }
 
     @Override
