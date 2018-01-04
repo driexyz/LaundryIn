@@ -108,11 +108,17 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         mTextCurDate = (TextView) view.findViewById(R.id.currentDate);
         mTextETADate = (TextView) view.findViewById(R.id.etaDate);
 
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+        Spinner spinnerPaket = (Spinner) view.findViewById(R.id.spinnerPaket);
+        ArrayAdapter<CharSequence> adapterPaket = ArrayAdapter.createFromResource(getActivity(),
                 R.array.day_list, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        adapterPaket.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPaket.setAdapter(adapterPaket);
+
+        Spinner spinnerAmbil = (Spinner) view.findViewById(R.id.spinnerAmbil);
+        ArrayAdapter<CharSequence> adapterAmbil = ArrayAdapter.createFromResource(getActivity(),
+                R.array.ambil_list, android.R.layout.simple_spinner_item);
+        adapterAmbil.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAmbil.setAdapter(adapterAmbil);
 
         mTextCurDate.setText(getCurrentDate());
         mTextETADate.setText(getEstimateDate());

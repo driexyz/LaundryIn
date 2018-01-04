@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.rilixtech:fontawesome-typeface:4.7.0.4'
 
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
+    implementation 'com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1'
 
     compile project(path: ':bannerslider')
 }
