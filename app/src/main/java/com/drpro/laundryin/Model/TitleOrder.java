@@ -12,8 +12,10 @@ public class TitleOrder implements Parent<Order> {
 
     // a recipe contains several ingredients
     private List<Order> mOrders;
+    private int mNumberOrder;
 
-    public TitleOrder(String name, List<Order> orders) {
+    public TitleOrder(int no, List<Order> orders) {
+        mNumberOrder = no;
         mOrders = orders;
     }
 

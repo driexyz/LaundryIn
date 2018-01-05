@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +72,9 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
     private GoogleApiClient mGoogleApiClient;
     private int PLACE_PICKER_REQUEST = 1;
 
+    private Spinner spinnerPaket;
+    private Spinner spinnerAmbil;
+
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
@@ -108,13 +112,13 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         mTextCurDate = (TextView) view.findViewById(R.id.currentDate);
         mTextETADate = (TextView) view.findViewById(R.id.etaDate);
 
-        Spinner spinnerPaket = (Spinner) view.findViewById(R.id.spinnerPaket);
+        spinnerPaket = (Spinner) view.findViewById(R.id.spinnerPaket);
         ArrayAdapter<CharSequence> adapterPaket = ArrayAdapter.createFromResource(getActivity(),
                 R.array.day_list, android.R.layout.simple_spinner_item);
         adapterPaket.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPaket.setAdapter(adapterPaket);
 
-        Spinner spinnerAmbil = (Spinner) view.findViewById(R.id.spinnerAmbil);
+        spinnerAmbil = (Spinner) view.findViewById(R.id.spinnerAmbil);
         ArrayAdapter<CharSequence> adapterAmbil = ArrayAdapter.createFromResource(getActivity(),
                 R.array.ambil_list, android.R.layout.simple_spinner_item);
         adapterAmbil.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -139,7 +143,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         //Tab 1
         TabHost.TabSpec spec = tabHost.newTabSpec("Standard");
         spec.setContent(R.id.free);
-        spec.setIndicator("Standard");
+        spec.setIndicator("Paket Hemat");
         tabHost.addTab(spec);
 
         //Tab2
@@ -193,13 +197,29 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         final String notes = mTextNotes.getText().toString();
         final String curdate = mTextCurDate.getText().toString();
         final String etadate = mTextETADate.getText().toString();
-        final String ordertype = "Paket Hemat";
+        final String paket = spinnerPaket.getSelectedItem().toString() ;
+        final String ordertype = "Paket Hemat " + paket;
         final Boolean isPremium = false;
+        final String waktuAmbil = spinnerAmbil.getSelectedItem().toString();
+        String price = "";
 
         // location is required
         if (TextUtils.isEmpty(location)) {
             mTextLocation.setError("REQUIRED");
             return;
+        }
+
+        if(paket.equals("3 Hari"))
+        {
+            price = "Rp. 5000";
+        }
+        else if(paket.equals("1 Hari"))
+        {
+            price = "Rp. 7000";
+        }
+        else if(paket.equals("6 Jam"))
+        {
+            price = "Rp. 10000";
         }
 
         /*// notes is required
@@ -208,7 +228,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             return;
         }*/
 
-        final Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium);
+        final Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium, "Rp. 10000", waktuAmbil);
 
         mDatabase.child("Users").child(Common.currentUser.getPhone().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

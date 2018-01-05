@@ -18,8 +18,11 @@ public class Order {
     public String etaDate;
     public String orderType;
     public Boolean isPremium;
+    public Boolean isComplete;
+    public String price;
+    public String waktuAmbil;
 
-    public Order(String user, String location, String orderNotes, String orderDate, String etaDate, String orderType, Boolean isPremium) {
+    public Order(String user, String location, String orderNotes, String orderDate, String etaDate, String orderType, Boolean isPremium, String price, String waktuAmbil) {
         this.user = user;
         this.location = location;
         this.orderNotes = orderNotes;
@@ -27,6 +30,9 @@ public class Order {
         this.etaDate = etaDate;
         this.orderType = orderType;
         this.isPremium = isPremium;
+        this.price = price;
+        this.waktuAmbil = waktuAmbil;
+        this.isComplete = false;
     }
 
     public Order(String user) {
@@ -47,6 +53,8 @@ public class Order {
         result.put("etaDate", etaDate);
         result.put("orderType", orderType);
         result.put("isPremium", isPremium);
+        result.put("price", price);
+        result.put("waktuAmbil", waktuAmbil);
 
         return result;
     }
@@ -106,5 +114,29 @@ public class Order {
 
     public void setPremium(Boolean premium) {
         isPremium = premium;
+    }
+
+    public Boolean getComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(Boolean complete) {
+        isComplete = complete;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getWaktuAmbil() {
+        return waktuAmbil;
+    }
+
+    public void setWaktuAmbil(String waktuAmbil) {
+        this.waktuAmbil = waktuAmbil;
     }
 }

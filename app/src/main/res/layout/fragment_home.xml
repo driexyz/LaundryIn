@@ -192,8 +192,13 @@
                                                 android:ems="10"
                                                 android:inputType="textPersonName"
                                                 android:text="Waktu Pengambilan"
-                                                android:paddingBottom="10dp"
+                                                android:layout_marginBottom="5dp"
                                                 android:fontFamily="@font/lato"/>
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="2dp"
+                                                android:background="@color/divider"/>
 
                                             <LinearLayout
                                                 android:orientation="horizontal"
@@ -242,7 +247,7 @@
                                                     <TextView
                                                         android:id="@+id/currentDate"
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="46dp"
+                                                        android:layout_height="wrap_content"
                                                         android:layout_weight="2"
                                                         android:ems="10"
                                                         android:inputType="datetime"
@@ -281,6 +286,7 @@
                                                         android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:layout_weight="2"
+                                                        android:layout_marginTop="2dp"
                                                         android:layout_marginBottom="5dp"
                                                         android:ems="10"
                                                         android:inputType="datetime"
@@ -293,8 +299,9 @@
                                                     <TextView
                                                         android:id="@+id/etaDate"
                                                         android:layout_width="match_parent"
-                                                        android:layout_height="46dp"
+                                                        android:layout_height="wrap_content"
                                                         android:layout_weight="2"
+                                                        android:layout_marginTop="2dp"
                                                         android:ems="10"
                                                         android:inputType="datetime"
                                                         android:text="estimated date"
@@ -332,9 +339,14 @@
                                                 android:ems="10"
                                                 android:inputType="textPersonName"
                                                 android:text="Informasi Harga Perkilo"
-                                                android:paddingBottom="5dp"
+                                                android:layout_marginBottom="5dp"
                                                 android:textColor="@color/primary_text"
                                                 android:fontFamily="@font/lato"/>
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="2dp"
+                                                android:background="@color/divider"/>
 
                                             <LinearLayout
                                                 android:orientation="horizontal"

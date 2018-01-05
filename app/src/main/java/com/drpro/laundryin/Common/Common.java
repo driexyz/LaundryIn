@@ -1,5 +1,6 @@
 package com.drpro.laundryin.Common;
 
+import com.drpro.laundryin.Model.Order;
 import com.drpro.laundryin.Model.User;
 
 /**
@@ -8,5 +9,6 @@ import com.drpro.laundryin.Model.User;
 
 public class Common {
     public static User currentUser;
+    public static Order currentOrder;
 }
 

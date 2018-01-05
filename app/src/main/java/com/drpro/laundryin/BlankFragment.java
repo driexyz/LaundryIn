@@ -1,6 +1,7 @@
 package com.drpro.laundryin;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -105,19 +106,23 @@ public class BlankFragment extends Fragment {
 
         mAdapter = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(Order.class,R.layout.item_order_layout,OrderViewHolder.class,mDatabase){
             @Override
-            protected void populateViewHolder(OrderViewHolder viewHolder, Order model, int position) {
+            protected void populateViewHolder(OrderViewHolder viewHolder, final Order model, int position) {
                 viewHolder.orderNumberView.setText("No. Order : #" + String.valueOf(position + 1));
-                viewHolder.userView.setText("Nama: " + model.getUser());
-                viewHolder.locationView.setText("Lokasi: " + model.getLocation());
-                viewHolder.orderNotesView.setText("Catatan: " + model.getOrderNotes());
+                //viewHolder.userView.setText("Nama: " + model.getUser());
+                //viewHolder.locationView.setText("Lokasi: " + model.getLocation());
+                //viewHolder.orderNotesView.setText("Catatan: " + model.getOrderNotes());
                 viewHolder.orderDateView.setText("Tgl Order: " + model.getOrderDate());
-                viewHolder.etaDateView.setText("Tgl. Ambil: " + model.getEtaDate());
+               // viewHolder.etaDateView.setText("Tgl. Ambil: " + model.getEtaDate());
                 viewHolder.orderTypeView.setText("Tipe: " + model.getOrderType());
 
                 viewHolder.setOrderClickListener(new OrderClickListener() {
                     @Override
                     public void onClick(View view, int pos, boolean isLongClick) {
-                        Toast.makeText(getActivity(), "order clicked", Toast.LENGTH_SHORT).show();
+                        Common.currentOrder = model;
+                        //Toast.makeText(getActivity(), "order clicked", Toast.LENGTH_SHORT).show();
+                        Intent orderDetail = new Intent(getContext(), OrderDetailActivity.class);
+                        startActivity(orderDetail);
+                        //getActivity().finish();
                     }
                 });
             }

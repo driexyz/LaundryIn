@@ -24,41 +24,8 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/txtUserView"
-            android:text="User"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txtLocationView"
-            android:text="Location"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txtOrderNotesView"
-            android:text="Notes"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
             android:id="@+id/txtOrderDateView"
             android:text="Order Date"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txtEtaDateView"
-            android:text="Order ETA"
             android:textColor="@android:color/black"
             android:textSize="16sp"
 

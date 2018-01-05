@@ -27,11 +27,11 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         super(itemView);
 
         orderNumberView = itemView.findViewById(R.id.txtOrderNumber);
-        userView = itemView.findViewById(R.id.txtUserView);
-        locationView = itemView.findViewById(R.id.txtLocationView);
-        orderNotesView = itemView.findViewById(R.id.txtOrderNotesView);
+        //userView = itemView.findViewById(R.id.txtUserView);
+        //locationView = itemView.findViewById(R.id.txtLocationView);
+        //orderNotesView = itemView.findViewById(R.id.txtOrderNotesView);
         orderDateView = itemView.findViewById(R.id.txtOrderDateView);
-        etaDateView = itemView.findViewById(R.id.txtEtaDateView);
+        //etaDateView = itemView.findViewById(R.id.txtEtaDateView);
         orderTypeView = itemView.findViewById(R.id.txtOrderTypeView);
 
         itemView.setOnClickListener(this);
