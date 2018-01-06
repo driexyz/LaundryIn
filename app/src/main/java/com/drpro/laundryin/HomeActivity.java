@@ -26,6 +26,7 @@ public class HomeActivity extends AppCompatActivity
     private TextView mTxtFullname;
     private static long back_pressed;
     private int mTabPosition = 0;
+    private int mLastTabPosition = 3;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -36,11 +37,16 @@ public class HomeActivity extends AppCompatActivity
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                    // mTextMessage.setText("Homeeeeeeeeeeeeeee");
-                    mTabPosition = 0;
-                    HomeFragment homeFrag = new HomeFragment();
-                   FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                   ft.replace(R.id.content, homeFrag, "FragmentName");
-                   ft.commit();
+                    if(mLastTabPosition == 0)
+                        return false;
+                   else {
+                        mTabPosition = 0;
+                        mLastTabPosition = mTabPosition;
+                        HomeFragment homeFrag = new HomeFragment();
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.content, homeFrag, "FragmentName");
+                        ft.commit();
+                    }
                 return true;
                 case R.id.navigation_dashboard:
                   //  mTextMessage.setText("Historyyyyyyyyyyyyyy");
@@ -48,6 +54,7 @@ public class HomeActivity extends AppCompatActivity
                         return false;
                     else{
                     mTabPosition = 1;
+                    mLastTabPosition = 1;
                     BlankFragment bleng = new BlankFragment();
                     FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
                    ft2.replace(R.id.content, bleng, "FragmentName");
@@ -59,6 +66,7 @@ public class HomeActivity extends AppCompatActivity
                         return false;
                     else{
                     mTabPosition = 2;
+                    mLastTabPosition = 2;
                     ProfileFragment profile = new ProfileFragment();
                     FragmentTransaction ft3 = getSupportFragmentManager().beginTransaction();
                     ft3.replace(R.id.content, profile, "FragmentName");

@@ -10,6 +10,7 @@
     <color name="divider">#BDBDBD</color>
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#1976D2</color>
+    <color name="iconColor">#3D9CF8</color>
 
     <color name="teal">#009688</color>
 </resources>

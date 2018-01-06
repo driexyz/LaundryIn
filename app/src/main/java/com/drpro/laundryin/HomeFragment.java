@@ -3,11 +3,13 @@ package com.drpro.laundryin;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -152,11 +154,12 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         spec.setIndicator("Premium");
         tabHost.addTab(spec);
 
-        int titleColor = Color.WHITE; //<-- change this to the color you want the title text to be
+        int titleColor = Color.CYAN; //<-- change this to the color you want the title text to be
         for(int i = 0;i < tabHost.getTabWidget().getChildCount(); i++)
         {
             TextView textView = (TextView)tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-            textView.setTextColor(titleColor);
+            textView.setTextColor(getResources().getColor(R.color.accent));
+            textView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.lato), Typeface.BOLD);
         }
 
         //Event

@@ -3,6 +3,7 @@ package com.drpro.laundryin;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.content.res.ResourcesCompat;
 
 import com.drpro.laundryin.Common.Common;
 import com.drpro.laundryin.Interface.OrderClickListener;
@@ -43,6 +45,14 @@ public class BlankFragment extends Fragment {
     private FirebaseRecyclerAdapter<Order, OrderViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
+
+    // [START declare_database_ref]
+    private DatabaseReference mDatabaseComplete;
+    // [END declare_database_ref]
+
+    private FirebaseRecyclerAdapter<Order, OrderViewHolder> mAdapterComplete;
+    private RecyclerView mRecyclerComplete;
+    private LinearLayoutManager mManagerComplete;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -76,7 +86,8 @@ public class BlankFragment extends Fragment {
         for(int i = 0;i < tabHost.getTabWidget().getChildCount(); i++)
         {
             TextView textView = (TextView)tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-            textView.setTextColor(titleColor);
+            textView.setTextColor(getResources().getColor(R.color.accent));
+            textView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.lato), Typeface.BOLD);
         }
 
         //Event
@@ -95,6 +106,16 @@ public class BlankFragment extends Fragment {
         mRecycler.setHasFixedSize(true);
         mManager = new LinearLayoutManager(getActivity());
         mRecycler.setLayoutManager(mManager);
+
+
+        // [START create_database_reference]
+        mDatabaseComplete = FirebaseDatabase.getInstance().getReference("/Users-order/" );
+        // [END create_database_reference]
+
+        mRecyclerComplete = view.findViewById(R.id.completed);
+        mRecyclerComplete.setHasFixedSize(true);
+        mManagerComplete = new LinearLayoutManager(getActivity());
+        mRecyclerComplete.setLayoutManager(mManagerComplete);
 
         //load data
         getdatafromfirebase();
@@ -128,6 +149,31 @@ public class BlankFragment extends Fragment {
             }
         };
         mRecycler.setAdapter(mAdapter);
+
+        mAdapterComplete = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(Order.class,R.layout.item_order_layout,OrderViewHolder.class,mDatabaseComplete){
+            @Override
+            protected void populateViewHolder(OrderViewHolder viewHolder, final Order model, int position) {
+                viewHolder.orderNumberView.setText("No. Order : #" + String.valueOf(position + 1));
+                //viewHolder.userView.setText("Nama: " + model.getUser());
+                //viewHolder.locationView.setText("Lokasi: " + model.getLocation());
+                //viewHolder.orderNotesView.setText("Catatan: " + model.getOrderNotes());
+                viewHolder.orderDateView.setText("Tgl Order: " + model.getOrderDate());
+                // viewHolder.etaDateView.setText("Tgl. Ambil: " + model.getEtaDate());
+                viewHolder.orderTypeView.setText("Tipe: " + model.getOrderType());
+
+                viewHolder.setOrderClickListener(new OrderClickListener() {
+                    @Override
+                    public void onClick(View view, int pos, boolean isLongClick) {
+                        Common.currentOrder = model;
+                        //Toast.makeText(getActivity(), "order clicked", Toast.LENGTH_SHORT).show();
+                        Intent orderDetail = new Intent(getContext(), OrderDetailActivity.class);
+                        startActivity(orderDetail);
+                        //getActivity().finish();
+                    }
+                });
+            }
+        };
+        mRecyclerComplete.setAdapter(mAdapterComplete);
 
     }
 

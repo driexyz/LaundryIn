@@ -22,6 +22,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Order Detail"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
                 android:layout_margin="8dp"
                 android:fontFamily="@font/lato"/>
 
@@ -43,8 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_user_profile"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -54,7 +56,8 @@
                     android:layout_weight="3"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"/>
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/lato"/>
 
                 <TextView
                     android:id="@+id/txtUserView"
@@ -64,7 +67,8 @@
                     android:layout_weight="3"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"/>
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
@@ -80,8 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_alamat"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -91,7 +94,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
@@ -106,8 +110,7 @@
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -117,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="6"/>
+                    android:layout_weight="6"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
@@ -133,8 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_catatan"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -144,7 +147,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
 
                 <TextView
@@ -155,7 +159,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
@@ -171,8 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_create"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -182,7 +186,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
                 <TextView
                     android:id="@+id/txtOrderDateView"
@@ -192,7 +197,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
@@ -208,8 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_done"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -219,7 +224,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
                 <TextView
                     android:id="@+id/txtEtaDateView"
                     android:text="Estimasi Selesai :"
@@ -228,7 +234,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
@@ -244,8 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_laundry"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -255,7 +261,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
                 <TextView
                     android:id="@+id/txtOrderTypeView"
@@ -265,7 +272,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
@@ -281,8 +289,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_ambil"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -292,7 +299,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
                 <TextView
                     android:id="@+id/txtWaktuAmbilView"
@@ -302,7 +310,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
 
             </LinearLayout>
@@ -319,8 +328,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_money"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_gravity="center"
                     android:layout_weight="0"/>
 
                 <TextView
@@ -330,7 +338,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
                 <TextView
                     android:id="@+id/txtTotalHargaView"
@@ -340,7 +349,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/lato"/>
 
             </LinearLayout>
 
