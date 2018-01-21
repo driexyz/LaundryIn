@@ -51,6 +51,8 @@ dependencies {
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
     implementation 'com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1'
 
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
     compile project(path: ':bannerslider')
 }
 apply plugin: 'com.google.gms.google-services'

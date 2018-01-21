@@ -43,6 +43,11 @@
             android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:orientation="vertical">
 
         <TabHost
             android:id="@+id/tabHost"
@@ -119,8 +124,9 @@
                                                 android:layout_gravity="center"
                                                 android:ellipsize="end"
                                                 android:ems="10"
-                                                android:hint="Lokasi Anda"
+                                                android:hint="Tap disini untuk menambahkan lokasi"
                                                 app:met_floatingLabel="highlight"
+                                                app:met_floatingLabelText="Lokasi Anda"
                                                 android:inputType="textMultiLine"
                                                 android:maxLines="3"
                                                 android:lineSpacingExtra="10sp"
@@ -152,6 +158,7 @@
                                                 android:ellipsize="end"
                                                 android:ems="10"
                                                 android:hint="Tambahan Informasi"
+                                                app:met_floatingLabelText="Catatan"
                                                 app:met_floatingLabel="highlight"
                                                 android:inputType="textMultiLine"
                                                 android:maxLines="3"
@@ -261,6 +268,33 @@
                                                         android:fontFamily="@font/lato"
                                                         android:layout_marginBottom="5dp"/>
 
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal"
+                                                        android:weightSum="4">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:ems="10"
+                                                            android:layout_marginBottom="5dp"
+                                                            android:inputType="datetime"
+                                                            android:text="Cuci :"
+                                                            android:textColor="@color/secondary_text"
+                                                            android:fontFamily="@font/lato"
+                                                            />
+
+                                                        <Switch
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:layout_marginRight="5dp"
+                                                            />
+
+                                                    </LinearLayout>
+
                                                 </LinearLayout>
 
                                                 <LinearLayout
@@ -310,6 +344,33 @@
                                                         android:textAlignment="center"
                                                         android:fontFamily="@font/lato"
                                                         android:layout_marginBottom="5dp"/>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal"
+                                                        android:weightSum="4">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:ems="10"
+                                                            android:layout_marginBottom="5dp"
+                                                            android:inputType="datetime"
+                                                            android:text="Setrika :"
+                                                            android:textColor="@color/secondary_text"
+                                                            android:fontFamily="@font/lato"
+                                                            />
+
+                                                        <Switch
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:layout_marginRight="5dp"
+                                                            />
+
+                                                    </LinearLayout>
 
                                                 </LinearLayout>
 
@@ -476,68 +537,881 @@
 
                     <LinearLayout
                         android:id="@+id/premium"
-                        android:background="@color/divider"
+                        android:background="@android:color/white"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <ScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
                             <LinearLayout
                                 android:orientation="vertical"
-                                android:weightSum="1"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
 
                                 <android.support.v7.widget.CardView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="8dp"
-                                    >
+                                    android:layout_margin="8dp">
 
-                                    <TextView
+                                    <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Pesanan 1"
-                                        android:layout_margin="26dp"/>
+                                        android:focusable="true"
+                                        android:focusableInTouchMode="true"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_add_location"
+                                                android:layout_gravity="center"
+                                                />
+
+                                            <com.rengwuxian.materialedittext.MaterialEditText
+                                                android:id="@+id/txtLocation2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_weight="1"
+                                                android:layout_gravity="center"
+                                                android:ellipsize="end"
+                                                android:ems="10"
+                                                android:hint="Tap disini untuk menambahkan lokasi"
+                                                app:met_floatingLabel="highlight"
+                                                app:met_floatingLabelText="Lokasi Anda"
+                                                android:inputType="textMultiLine"
+                                                android:maxLines="3"
+                                                android:lineSpacingExtra="10sp"
+                                                android:scrollHorizontally="false"
+                                                android:textColor="@color/primary_text"
+                                                android:textSize="16sp"
+                                                android:fontFamily="@font/lato"/>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_notes_addtional"
+                                                android:layout_gravity="center"/>
+
+                                            <com.rengwuxian.materialedittext.MaterialEditText
+                                                android:id="@+id/txtInfo12"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_weight="1"
+                                                android:ellipsize="end"
+                                                android:ems="10"
+                                                android:hint="Tambahan Informasi"
+                                                app:met_floatingLabelText="Catatan"
+                                                app:met_floatingLabel="highlight"
+                                                android:inputType="textMultiLine"
+                                                android:maxLines="3"
+                                                android:lineSpacingExtra="10sp"
+                                                android:scrollHorizontally="false"
+                                                android:textColor="@color/primary_text"
+                                                android:textSize="16sp"
+                                                android:fontFamily="@font/lato"
+                                                android:layout_gravity="center"/>
+
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
 
                                 </android.support.v7.widget.CardView>
 
                                 <android.support.v7.widget.CardView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="8dp">>
+                                    android:layout_margin="8dp">
 
-                                    <TextView
+                                    <LinearLayout
+                                        android:orientation="vertical"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="Pesanan 2"
-                                        android:layout_margin="26dp"/>
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Price List"
+                                            android:textSize="16sp"
+                                            android:textStyle="bold"
+                                            android:textColor="@android:color/black"
+                                            android:layout_margin="8dp"
+                                            android:fontFamily="@font/lato"/>
+
+                                        <View
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2dp"
+                                            android:background="@color/divider"
+                                            android:layout_margin="8dp"/>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="6">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_jackets"
+                                                android:layout_gravity="center"
+                                                android:layout_weight="0"/>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:text="Jaket "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                                <TextView
+                                                    android:text="Rp. 10000 "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                                                    android:id="@+id/number_button_jaket"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="30dp"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:gravity="center_vertical"
+                                                    app:backGroundColor="@color/primary"
+                                                    app:textSize="4sp" />
+
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="6">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_shirts"
+                                                android:layout_gravity="center"
+                                                android:layout_weight="0"/>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:text="Kemeja "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                                <TextView
+                                                    android:text="Rp. 6000 "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                                                    android:id="@+id/number_button_kemeja"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="30dp"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:gravity="center_vertical"
+                                                    app:backGroundColor="@color/primary"
+                                                    app:textSize="4sp" />
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="6">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_clothes"
+                                                android:layout_gravity="center"
+                                                android:layout_weight="0"/>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:text="Kaos "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                                <TextView
+                                                    android:text="Rp. 6000 "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                                                    android:id="@+id/number_button_kaos"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="30dp"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:gravity="center_vertical"
+                                                    app:backGroundColor="@color/primary"
+                                                    app:textSize="4sp" />
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="6">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_dress"
+                                                android:layout_gravity="center"
+                                                android:layout_weight="0"/>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:text="Dress "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                                <TextView
+                                                    android:text="Rp. 10000 "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                                                    android:id="@+id/number_button_dress"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="30dp"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:gravity="center_vertical"
+                                                    app:backGroundColor="@color/primary"
+                                                    app:textSize="4sp" />
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="6">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_blanket"
+                                                android:layout_gravity="center"
+                                                android:layout_weight="0"/>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:text="Selimut "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                                <TextView
+                                                    android:text="Rp. 10000 "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                                                    android:id="@+id/number_button_selimut"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="30dp"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:gravity="center_vertical"
+                                                    app:backGroundColor="@color/primary"
+                                                    app:textSize="4sp" />
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="6">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/ic_sprei"
+                                                android:layout_gravity="center"
+                                                android:layout_weight="0"/>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <TextView
+                                                    android:text="Bed Cover "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                                <TextView
+                                                    android:text="Rp. 15000 "
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3"
+                                                    android:layout_marginLeft="8dp"
+                                                    android:layout_marginTop="2dp"
+                                                    android:layout_marginBottom="2dp"
+                                                    android:fontFamily="@font/lato"/>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="3">
+
+                                                <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                                                    android:id="@+id/number_button_bed_cover"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="30dp"
+                                                    android:layout_gravity="center_vertical"
+                                                    android:gravity="center_vertical"
+                                                    app:backGroundColor="@color/primary"
+                                                    app:textSize="4sp" />
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
 
                                 </android.support.v7.widget.CardView>
 
-                                <android.support.v7.widget.CardView
+                                <LinearLayout
+                                    android:orientation="vertical"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="8dp">>
+                                    android:layout_height="wrap_content">
 
-                                    <TextView
+                                    <android.support.v7.widget.CardView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Pesanan 3"
-                                        android:layout_margin="26dp"/>
+                                        android:layout_margin="8dp">
 
-                                </android.support.v7.widget.CardView>
+                                        <LinearLayout
+                                            android:orientation="vertical"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:focusable="true"
+                                            android:focusableInTouchMode="true">
+
+                                            <TextView
+                                                android:id="@+id/txtInfo22"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:textColor="@color/primary_text"
+                                                android:ems="10"
+                                                android:layout_marginTop="5dp"
+                                                android:inputType="textPersonName"
+                                                android:text="Waktu Pengambilan"
+                                                android:fontFamily="@font/lato"/>
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="1dp"
+                                                android:layout_marginVertical="8dp"
+                                                android:background="@color/divider"/>
+
+                                            <LinearLayout
+                                                android:orientation="horizontal"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:orientation="vertical"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="2">
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="2"
+                                                        android:ems="10"
+                                                        android:inputType="datetime"
+                                                        android:text="Pilih Pengambilan :"
+                                                        android:textColor="@color/secondary_text"
+                                                        android:fontFamily="@font/lato"/>
+
+                                                    <Spinner
+                                                        android:id="@+id/spinnerAmbil2"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_margin="5dp"
+                                                        android:gravity="right"
+                                                        android:textAlignment="gravity"
+                                                        android:layout_gravity="center"
+                                                        android:fontFamily="@font/lato"/>
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="2"
+                                                        android:ems="10"
+                                                        android:inputType="datetime"
+                                                        android:text="Order Tanggal :"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:textColor="@color/secondary_text"
+                                                        android:fontFamily="@font/lato"/>
+
+                                                    <TextView
+                                                        android:id="@+id/currentDate2"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="2"
+                                                        android:ems="10"
+                                                        android:inputType="datetime"
+                                                        android:text="order date"
+                                                        android:textColor="@color/secondary_text"
+                                                        android:textAlignment="center"
+                                                        android:fontFamily="@font/lato"
+                                                        android:layout_marginBottom="5dp"/>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal"
+                                                        android:weightSum="4">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:ems="10"
+                                                            android:layout_marginBottom="5dp"
+                                                            android:inputType="datetime"
+                                                            android:text="Cuci :"
+                                                            android:textColor="@color/secondary_text"
+                                                            android:fontFamily="@font/lato"
+                                                            />
+
+                                                        <Switch
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:layout_marginRight="5dp"
+                                                            />
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:orientation="vertical"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="2">
+
+                                                    <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Pilih Paket :"
+                                                        android:ems="10"
+                                                        android:fontFamily="@font/lato" />
+
+                                                    <Spinner
+                                                        android:id="@+id/spinnerPaket2"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_margin="5dp"
+                                                        android:gravity="right"
+                                                        android:textAlignment="gravity"
+                                                        android:layout_gravity="center"
+                                                        android:fontFamily="@font/lato"/>
+
+                                                    <TextView
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="2"
+                                                        android:ems="10"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:inputType="datetime"
+                                                        android:text="Selesai Tanggal :"
+                                                        android:textColor="@color/secondary_text"
+                                                        android:fontFamily="@font/lato"
+                                                        />
+
+                                                    <TextView
+                                                        android:id="@+id/etaDate2"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="2"
+                                                        android:ems="10"
+                                                        android:inputType="datetime"
+                                                        android:text="estimated date"
+                                                        android:textColor="@color/secondary_text"
+                                                        android:textAlignment="center"
+                                                        android:fontFamily="@font/lato"
+                                                        android:layout_marginBottom="5dp"/>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="horizontal"
+                                                        android:weightSum="4">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:ems="10"
+                                                            android:layout_marginBottom="5dp"
+                                                            android:inputType="datetime"
+                                                            android:text="Setrika :"
+                                                            android:textColor="@color/secondary_text"
+                                                            android:fontFamily="@font/lato"
+                                                            />
+
+                                                        <Switch
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:layout_weight="2"
+                                                            android:layout_marginRight="5dp"
+                                                            />
+
+                                                    </LinearLayout>
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                    <android.support.v7.widget.CardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:layout_marginLeft="8dp"
+                                            android:layout_marginRight="8dp"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:id="@+id/txtInfo32"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:ems="10"
+                                                android:layout_marginTop="5dp"
+                                                android:inputType="textPersonName"
+                                                android:text="Informasi Harga Perkilo"
+                                                android:textColor="@color/primary_text"
+                                                android:fontFamily="@font/lato"/>
+
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="1dp"
+                                                android:layout_marginVertical="8dp"
+                                                android:background="@color/divider"/>
+
+                                            <LinearLayout
+                                                android:orientation="horizontal"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+                                                <LinearLayout
+                                                    android:orientation="vertical"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3">
+
+                                                    <TextView
+                                                        android:id="@+id/txtPaket12"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:ems="10"
+                                                        android:inputType="textPersonName"
+                                                        android:text="Paket 3 hari"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:fontFamily="@font/lato"/>
+                                                    <TextView
+                                                        android:id="@+id/txtHarga12"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:ems="10"
+                                                        android:inputType="textPersonName"
+                                                        android:text="1kg @ Rp. 5000"
+                                                        android:textSize="12sp"
+                                                        android:fontFamily="@font/lato"/>
+
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:orientation="vertical"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3">
+
+                                                    <TextView
+                                                        android:id="@+id/txtPaket22"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:ems="10"
+                                                        android:inputType="textPersonName"
+                                                        android:text="Paket 1 hari"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:fontFamily="@font/lato"/>
+                                                    <TextView
+                                                        android:id="@+id/txtHarga22"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:ems="10"
+                                                        android:inputType="textPersonName"
+                                                        android:text="1kg @ Rp. 7000"
+                                                        android:textSize="12sp"
+                                                        android:fontFamily="@font/lato"/>
+
+
+                                                </LinearLayout>
+
+                                                <LinearLayout
+                                                    android:orientation="vertical"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="3">
+
+                                                    <TextView
+                                                        android:id="@+id/txtPaket32"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:ems="10"
+                                                        android:inputType="textPersonName"
+                                                        android:text="Paket 6 Jam"
+                                                        android:layout_marginBottom="5dp"
+                                                        android:fontFamily="@font/lato"/>
+                                                    <TextView
+                                                        android:id="@+id/txtHarga32"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:ems="10"
+                                                        android:inputType="textPersonName"
+                                                        android:text="1kg @ Rp. 10000"
+                                                        android:textSize="12sp"
+                                                        android:fontFamily="@font/lato"/>
+
+                                                </LinearLayout>
+
+
+                                            </LinearLayout>
+
+
+
+                                            <com.rilixtech.materialfancybutton.MaterialFancyButton
+                                                android:id="@+id/btn_order2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_marginTop="10dp"
+                                                android:paddingBottom="10dp"
+                                                android:paddingLeft="20dp"
+                                                android:paddingRight="20dp"
+                                                android:paddingTop="10dp"
+                                                android:layout_marginBottom="10dp"
+                                                fancy:mfb_borderColor="#FFFFFF"
+                                                fancy:mfb_borderWidth="1dp"
+                                                fancy:mfb_defaultColor="#7ab800"
+                                                fancy:mfb_focusColor="#9bd823"
+                                                fancy:mfb_iconFont="@font/lato"
+                                                fancy:mfb_radius="30dp"
+                                                fancy:mfb_text="Pesan Sekarang"
+                                                fancy:mfb_textColor="#FFFFFF" />
+
+                                        </LinearLayout>
+
+                                    </android.support.v7.widget.CardView>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
                         </ScrollView>
 
                     </LinearLayout>
+
                 </FrameLayout>
             </LinearLayout>
         </TabHost>
+
+        </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
