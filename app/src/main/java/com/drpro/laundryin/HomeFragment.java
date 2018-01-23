@@ -1,6 +1,7 @@
 package com.drpro.laundryin;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -22,8 +23,11 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog;
+import com.awesomedialog.blennersilva.awesomedialoglibrary.interfaces.Closure;
 import com.drpro.laundryin.Common.Common;
 import com.drpro.laundryin.Model.Order;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -61,9 +65,12 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
     private TextView
             mTextNotes,
             mTextCurDate,
-            mTextETADate;
+            mTextETADate,
+            mTextNotes2,
+            mTextCurDate2,
+            mTextETADate2;
 
-    private EditText mTextLocation;
+    private EditText mTextLocation, mTextLocation2;
 
     private BannerSlider bannerSlider;
 
@@ -74,13 +81,15 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
     private GoogleApiClient mGoogleApiClient;
     private int PLACE_PICKER_REQUEST = 1;
 
-    private Spinner spinnerPaket;
-    private Spinner spinnerAmbil;
+    private Spinner spinnerPaket,
+                    spinnerAmbil,
+                    spinnerPaket2,
+                    spinnerAmbil2;
 
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
-    MaterialFancyButton btnOrder;
+    MaterialFancyButton btnOrder, btnOrder2;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -92,6 +101,11 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        //===========================================================================================
+        // Init view for Paket Hemat
+        //===========================================================================================
 
         //mTextMessage = (TextView) findViewById(R.id.message);
         mTextLocation = (EditText)view.findViewById(R.id.txtLocation);
@@ -178,13 +192,98 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitOrder();
-                goToHistoryOrder();
+                openPopupPayment();
             }
 
         });
 
+        //===========================================================================================
+        // Init view for Premium
+        //===========================================================================================
+
+        //mTextMessage = (TextView) findViewById(R.id.message);
+        mTextLocation2 = (EditText)view.findViewById(R.id.txtLocation2);
+        mTextLocation2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent openMaps = new Intent(getActivity(),MapsActivity.class);
+                //startActivityForResult(openMaps, REQUEST_CODE);
+
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                try {
+                    startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mTextNotes2 = (TextView) view.findViewById(R.id.txtInfo12);
+        mTextCurDate2 = (TextView) view.findViewById(R.id.currentDate2);
+        mTextETADate2 = (TextView) view.findViewById(R.id.etaDate2);
+
+        spinnerPaket2 = (Spinner) view.findViewById(R.id.spinnerPaket2);
+        ArrayAdapter<CharSequence> adapterPaket2 = ArrayAdapter.createFromResource(getActivity(),
+                R.array.day_list, android.R.layout.simple_spinner_item);
+        adapterPaket2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPaket2.setAdapter(adapterPaket2);
+
+        spinnerAmbil2 = (Spinner) view.findViewById(R.id.spinnerAmbil2);
+        ArrayAdapter<CharSequence> adapterAmbil2 = ArrayAdapter.createFromResource(getActivity(),
+                R.array.ambil_list, android.R.layout.simple_spinner_item);
+        adapterAmbil2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAmbil2.setAdapter(adapterAmbil2);
+
+        mTextCurDate2.setText(getCurrentDate());
+        mTextETADate2.setText(getEstimateDate());
+
+        btnOrder2 = view.findViewById(R.id.btn_order2);
+        btnOrder2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPopupPaymentPremium();
+            }
+
+        });
+
+
         return view;
+    }
+
+    private void openPopupPaymentFancy() {
+
+        FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getContext())
+                .setimageResource(R.drawable.ic_account_balance_wallet_black_24dp)
+                .setTextTitle("Pilih Pembayaran")
+                .setTextSubTitle("Nanti / Langsung")
+                .setBody("Mohon untuk memilih kapan pembayaran akan dilakukan")
+                .setNegativeColor(R.color.colorPrimaryDark)
+                .setNegativeButtonText("Nanti")
+                .setOnNegativeClicked(new FancyAlertDialog.OnNegativeClicked() {
+                    @Override
+                    public void OnClick(View view, Dialog dialog) {
+                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+                        goToHistoryOrder();
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButtonText("Langsung")
+                .setPositiveColor(R.color.colorPrimaryDark)
+                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                    @Override
+                    public void OnClick(View view, Dialog dialog) {
+                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+                        goToHistoryOrder();
+                        dialog.dismiss();
+                    }
+                })
+                .setBodyGravity(FancyAlertDialog.TextGravity.LEFT)
+                .setTitleGravity(FancyAlertDialog.TextGravity.CENTER)
+                .setSubtitleGravity(FancyAlertDialog.TextGravity.RIGHT)
+                .setCancelable(false)
+                .build();
+        alert.show();
+
     }
 
     private void goToHistoryOrder() {
@@ -194,7 +293,8 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         ft.commit();
     }
 
-    private void submitOrder() {
+    private void submitOrder(String metodePembayaran) {
+
         final String user = Common.currentUser.getName();
         final String location = mTextLocation.getText().toString();
         final String notes = mTextNotes.getText().toString();
@@ -209,6 +309,58 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         // location is required
         if (TextUtils.isEmpty(location)) {
             mTextLocation.setError("REQUIRED");
+            Toast.makeText(getActivity(), "Mohon isi lokasi anda terlebih dahulu!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(paket.equals("3 Hari"))
+        {
+            price = "Rp. 5000";
+        }
+        else if(paket.equals("1 Hari"))
+        {
+            price = "Rp. 7000";
+        }
+        else if(paket.equals("6 Jam"))
+        {
+            price = "Rp. 10000";
+        }
+
+        final Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium, "Rp. 10000", waktuAmbil, metodePembayaran);
+
+        mDatabase.child("Users").child(Common.currentUser.getPhone().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                writeToDatabase(orders);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+
+    private void submitOrderPremium(String metodePembayaran) {
+
+        final String user = Common.currentUser.getName();
+        final String location = mTextLocation2.getText().toString();
+        final String notes = mTextNotes2.getText().toString();
+        final String curdate = mTextCurDate2.getText().toString();
+        final String etadate = mTextETADate2.getText().toString();
+        final String paket = spinnerPaket2.getSelectedItem().toString() ;
+        final String ordertype = "Paket Premium " + paket;
+        final Boolean isPremium = false;
+        final String waktuAmbil = spinnerAmbil2.getSelectedItem().toString();
+        String price = "";
+
+        // location is required
+        if (TextUtils.isEmpty(location)) {
+            mTextLocation2.setError("REQUIRED");
+            Toast.makeText(getActivity(), "Mohon isi lokasi anda terlebih dahulu!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -231,7 +383,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             return;
         }*/
 
-        final Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium, "Rp. 10000", waktuAmbil);
+        final Order orders = new Order(user, location, notes, curdate, etadate, ordertype, isPremium, "Rp. 10000", waktuAmbil, metodePembayaran);
 
         mDatabase.child("Users").child(Common.currentUser.getPhone().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -245,12 +397,78 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
             }
         });
 
+    }
 
+    private void openPopupPaymentPremium() {
 
-        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
-        //mTextLocation.setText("");
-        //mTextNotes.setText("");
+        String retVal;
+        new AwesomeSuccessDialog(getContext())
+                .setTitle("Metode Pembayaran")
+                .setMessage("Mohon pilih metode pembayaran")
+                .setColoredCircle(R.color.dialogSuccessBackgroundColor)
+                .setDialogIconAndColor(R.drawable.ic_account_balance_wallet_black_24dp, R.color.white)
+                .setCancelable(false)
+                .setPositiveButtonText("Langsung")
+                .setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor)
+                .setPositiveButtonTextColor(R.color.white)
+                .setNegativeButtonText("Nanti")
+                .setNegativeButtonbackgroundColor(R.color.dialogSuccessBackgroundColor)
+                .setNegativeButtonTextColor(R.color.white)
+                .setPositiveButtonClick(new Closure() {
+                    @Override
+                    public void exec() {
+                        //click
+                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+                        goToHistoryOrder();
+                        submitOrderPremium("Langsung");
+                    }
+                })
+                .setNegativeButtonClick(new Closure() {
+                    @Override
+                    public void exec() {
+                        //click
+                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+                        goToHistoryOrder();
+                        submitOrderPremium("Nanti");
+                    }
+                })
+                .show();
+    }
 
+    private void openPopupPayment() {
+
+        String retVal;
+        new AwesomeSuccessDialog(getContext())
+                .setTitle("Metode Pembayaran")
+                .setMessage("Mohon pilih metode pembayaran")
+                .setColoredCircle(R.color.dialogSuccessBackgroundColor)
+                .setDialogIconAndColor(R.drawable.ic_account_balance_wallet_black_24dp, R.color.white)
+                .setCancelable(false)
+                .setPositiveButtonText("Langsung")
+                .setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor)
+                .setPositiveButtonTextColor(R.color.white)
+                .setNegativeButtonText("Nanti")
+                .setNegativeButtonbackgroundColor(R.color.dialogSuccessBackgroundColor)
+                .setNegativeButtonTextColor(R.color.white)
+                .setPositiveButtonClick(new Closure() {
+                    @Override
+                    public void exec() {
+                        //click
+                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+                        goToHistoryOrder();
+                        submitOrder("Langsung");
+                    }
+                })
+                .setNegativeButtonClick(new Closure() {
+                    @Override
+                    public void exec() {
+                        //click
+                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
+                        goToHistoryOrder();
+                        submitOrder("Nanti");
+                    }
+                })
+                .show();
     }
 
     private void writeToDatabase(Order orders) {
@@ -348,7 +566,14 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
                 stBuilder.append("\n");*/
                 stBuilder.append("Address: ");
                 stBuilder.append(address);
-                mTextLocation.setText(stBuilder.toString());
+                if(tabHost.getCurrentTab() == 0)
+                {
+                    mTextLocation.setText(stBuilder.toString());
+                }
+                else if (tabHost.getCurrentTab() == 1)
+                {
+                    mTextLocation2.setText(stBuilder.toString());
+                }
             }
         }
     }

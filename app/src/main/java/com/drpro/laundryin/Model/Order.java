@@ -21,8 +21,9 @@ public class Order {
     public Boolean isComplete;
     public String price;
     public String waktuAmbil;
+    public String metodePembayaran;
 
-    public Order(String user, String location, String orderNotes, String orderDate, String etaDate, String orderType, Boolean isPremium, String price, String waktuAmbil) {
+    public Order(String user, String location, String orderNotes, String orderDate, String etaDate, String orderType, Boolean isPremium, String price, String waktuAmbil, String metodePembayaran) {
         this.user = user;
         this.location = location;
         this.orderNotes = orderNotes;
@@ -32,6 +33,7 @@ public class Order {
         this.isPremium = isPremium;
         this.price = price;
         this.waktuAmbil = waktuAmbil;
+        this.metodePembayaran = metodePembayaran;
         this.isComplete = false;
     }
 
@@ -55,6 +57,7 @@ public class Order {
         result.put("isPremium", isPremium);
         result.put("price", price);
         result.put("waktuAmbil", waktuAmbil);
+        result.put("metodePembayaran", metodePembayaran);
 
         return result;
     }
@@ -138,5 +141,13 @@ public class Order {
 
     public void setWaktuAmbil(String waktuAmbil) {
         this.waktuAmbil = waktuAmbil;
+    }
+
+    public String getMetodePembayaran() {
+        return metodePembayaran;
+    }
+
+    public void setMetodePembayaran(String metodePembayaran) {
+        this.metodePembayaran = metodePembayaran;
     }
 }
