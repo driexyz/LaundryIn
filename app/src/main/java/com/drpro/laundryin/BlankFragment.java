@@ -150,7 +150,7 @@ public class BlankFragment extends Fragment {
         };
         mRecycler.setAdapter(mAdapter);
 
-        mAdapterComplete = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(Order.class,R.layout.item_order_layout,OrderViewHolder.class,mDatabaseComplete){
+        mAdapterComplete = new FirebaseRecyclerAdapter<Order, OrderViewHolder>(Order.class,R.layout.item_order_layout_complete,OrderViewHolder.class,mDatabaseComplete){
             @Override
             protected void populateViewHolder(OrderViewHolder viewHolder, final Order model, int position) {
                 viewHolder.orderNumberView.setText("No. Order : #" + String.valueOf(position + 1));

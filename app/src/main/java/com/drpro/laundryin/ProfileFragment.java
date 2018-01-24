@@ -40,8 +40,8 @@ public class ProfileFragment extends Fragment {
         mTextFullname = view.findViewById(R.id.profileFullname);
         mTextFullname.setText(Common.currentUser.getName().toString());
 
-        bannerSlider = (BannerSlider) view.findViewById(R.id.banner_slider2);
-        addBanners();
+        //bannerSlider = (BannerSlider) view.findViewById(R.id.banner_slider2);
+       // addBanners();
 
         return view;
     }

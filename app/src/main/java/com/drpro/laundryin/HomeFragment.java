@@ -192,7 +192,13 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPopupPayment();
+                if (TextUtils.isEmpty(mTextLocation.getText().toString())) {
+                    mTextLocation.setError("REQUIRED");
+                    Toast.makeText(getActivity(), "Mohon isi lokasi anda terlebih dahulu!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    openPopupPayment();
+                }
             }
 
         });
@@ -241,49 +247,19 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         btnOrder2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPopupPaymentPremium();
+                if (TextUtils.isEmpty(mTextLocation2.getText().toString())) {
+                    mTextLocation2.setError("REQUIRED");
+                    Toast.makeText(getActivity(), "Mohon isi lokasi anda terlebih dahulu!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    openPopupPaymentPremium();
+                }
             }
 
         });
 
 
         return view;
-    }
-
-    private void openPopupPaymentFancy() {
-
-        FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getContext())
-                .setimageResource(R.drawable.ic_account_balance_wallet_black_24dp)
-                .setTextTitle("Pilih Pembayaran")
-                .setTextSubTitle("Nanti / Langsung")
-                .setBody("Mohon untuk memilih kapan pembayaran akan dilakukan")
-                .setNegativeColor(R.color.colorPrimaryDark)
-                .setNegativeButtonText("Nanti")
-                .setOnNegativeClicked(new FancyAlertDialog.OnNegativeClicked() {
-                    @Override
-                    public void OnClick(View view, Dialog dialog) {
-                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
-                        goToHistoryOrder();
-                        dialog.dismiss();
-                    }
-                })
-                .setPositiveButtonText("Langsung")
-                .setPositiveColor(R.color.colorPrimaryDark)
-                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
-                    @Override
-                    public void OnClick(View view, Dialog dialog) {
-                        Toast.makeText(getActivity(), "Pesanan telah dikirim, mohon tunggu !", Toast.LENGTH_SHORT).show();
-                        goToHistoryOrder();
-                        dialog.dismiss();
-                    }
-                })
-                .setBodyGravity(FancyAlertDialog.TextGravity.LEFT)
-                .setTitleGravity(FancyAlertDialog.TextGravity.CENTER)
-                .setSubtitleGravity(FancyAlertDialog.TextGravity.RIGHT)
-                .setCancelable(false)
-                .build();
-        alert.show();
-
     }
 
     private void goToHistoryOrder() {
@@ -305,13 +281,6 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         final Boolean isPremium = false;
         final String waktuAmbil = spinnerAmbil.getSelectedItem().toString();
         String price = "";
-
-        // location is required
-        if (TextUtils.isEmpty(location)) {
-            mTextLocation.setError("REQUIRED");
-            Toast.makeText(getActivity(), "Mohon isi lokasi anda terlebih dahulu!", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         if(paket.equals("3 Hari"))
         {
@@ -358,11 +327,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
         String price = "";
 
         // location is required
-        if (TextUtils.isEmpty(location)) {
-            mTextLocation2.setError("REQUIRED");
-            Toast.makeText(getActivity(), "Mohon isi lokasi anda terlebih dahulu!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
 
         if(paket.equals("3 Hari"))
         {
